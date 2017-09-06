@@ -13,12 +13,13 @@ const getRouters = () => (
         <li> <Link to="/page4">page4</Link> </li>
       </ul>
       <Switch>
-        <Route exact page='/' component={Home} />
-        <Route page='/page1' component={Page1} />
-        <Route page='/page2' component={Page2} />
-        <Route page='/page3' component={Page3} />
-        <Route page='/page4' component={Page4} />
+        <Route exact path="/" component={Home} />
+        <Route path="/page1" component={Page1} />
+        <Route path="/page2" component={Page2} />
+        <Route path="/page3" component={Page3} />
+        <Route path='/page4' component={Page4} />
       </Switch>
+   
     </div>
   </Router>
 );

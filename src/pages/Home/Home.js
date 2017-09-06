@@ -8,7 +8,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        这是首页啦~~~
+        这是首页啦~~~Home
       </div>
     );
   }
