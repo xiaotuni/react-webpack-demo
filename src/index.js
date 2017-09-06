@@ -1,14 +1,10 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Hello } from './component/index.js';
 
-import { Hello } from './component/Core.js';
-
+import getRouter from './router/router';
 
 ReactDOM.render(
-  <div>Hello React!
-<hr/>
-<Hello />
-
-  </div>, document.getElementById('app'));
+  getRouter(),
+  document.getElementById('app'));
