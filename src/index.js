@@ -1,6 +1,14 @@
 
-const setValue = value => {
-  document.getElementById('app').innerHTML = 'Webpack works<br/>' + value;
-}
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-setValue('Bebel Convert Es6');
+
+import { Hello } from './component/Core.js';
+
+
+ReactDOM.render(
+  <div>Hello React!
+
+<Hello />
+
+  </div>, document.getElementById('app'));

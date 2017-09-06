@@ -6,10 +6,13 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      use: ['babel-loader?cacheDirectory=true'],
-      include: path.join(__dirname, 'src')
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader?cacheDirectory=true'],
+        include: path.join(__dirname, 'src')
+      }
+
+    ]
   }
 }
