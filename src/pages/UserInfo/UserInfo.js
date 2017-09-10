@@ -23,9 +23,12 @@ class UserInfo extends Component {
     return (
       <div className="userInfoCss">
         <div className="img01"></div>
-        {
-          errorMsg
-        }
+        <div>
+          {errorMsg}
+        </div>
+        <div>
+          {errorMsg}
+        </div>
         {
           isLoading ? '请示信息中' :
             (
