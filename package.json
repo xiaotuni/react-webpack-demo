@@ -1,5 +1,5 @@
 {
-  "name": "react-family-demo",
+  "name": "react-webpack-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -33,6 +33,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "superagent": "^3.6.0",
     "uglifyjs-webpack-plugin": "^0.4.6",

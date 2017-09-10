@@ -16,9 +16,15 @@ class UserInfo extends Component {
   }
 
   render() {
+    const styles = require('./ui.scss');
+    console.log(styles);
+    console.log('-------styles-------end-------');
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
       <div className="userInfoCss">
+        <div className="a">
+          哈哈
+        </div>
         <div className="img01"></div>
         <div>
           <button onClick={() => {

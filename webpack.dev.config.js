@@ -3,9 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CommCfg = require('./wepback.common.config.js');
-console.log('----------------dev.config---------');
-console.log(CommCfg);
-console.log('----------------dev.config---------');
 
 const devConfig = {
   devtool: 'inline-source-map',
@@ -21,6 +18,24 @@ const devConfig = {
   module: {
     rules: [
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      // {
+      //   test: /\.scss$/,
+      //   use: ['style-loader', 'css-loader', 'sass-loader']
+      // },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader", options: {
+            sourceMap: true
+          }
+        }, {
+          loader: "sass-loader", options: {
+            sourceMap: true
+          }
+        }]
+      }
     ]
   },
   devServer: {
