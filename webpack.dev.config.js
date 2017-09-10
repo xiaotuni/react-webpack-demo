@@ -1,5 +1,6 @@
 const path = require('path');
 module.exports = {
+  devtool: 'inline-source-map',
   entry: [
     'react-hot-loader/patch',
     path.join(__dirname, 'src/index.js')
