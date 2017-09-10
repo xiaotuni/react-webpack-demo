@@ -1,9 +1,9 @@
 const path = require('path');
 module.exports = {
-  entry:  [
+  entry: [
     'react-hot-loader/patch',
     path.join(__dirname, 'src/index.js')
-],
+  ],
   output: {
     path: path.join(__dirname, './dist'),
     filename: 'bundle.js'
@@ -17,6 +17,15 @@ module.exports = {
       }
 
     ]
+  },
+  resolve: {
+    alias: {
+      pages: path.join(__dirname, 'src/pages'),
+      component: path.join(__dirname, 'src/component'),
+      router: path.join(__dirname, 'src/router'),
+      actions: path.join(__dirname, 'src/redux/actions'),
+      reducers: path.join(__dirname, 'src/redux/reducers'),
+    }
   },
   devServer: {
     port: 11111,

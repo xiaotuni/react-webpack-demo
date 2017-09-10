@@ -3,3 +3,5 @@ export Page2 from './page2';
 export Page3 from './page3';
 export Page4 from './page4';
 export Home from './Home/Home';
+export Counter from './Counter/Counter';
+export UserInfo from './UserInfo/UserInfo';
