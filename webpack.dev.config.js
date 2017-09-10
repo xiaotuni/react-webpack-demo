@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   devtool: 'inline-source-map',
   entry: [
@@ -7,8 +9,10 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, './dist'),
-    filename: 'bundle.js',
-    chunkFilename: '[name].js'
+    // filename: 'bundle.js',
+    // chunkFilename: '[name].js'
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[chunkhash].js'
   },
   module: {
     rules: [
@@ -46,5 +50,11 @@ module.exports = {
     contentBase: path.join(__dirname, './dist'),
     historyApiFallback: true,
     host: '0.0.0.0'
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname, 'src/index.html')
+    }),
+  ],
 }
