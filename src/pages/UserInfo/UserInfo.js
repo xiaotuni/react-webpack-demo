@@ -17,33 +17,31 @@ class UserInfo extends Component {
 
   render() {
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
-    console.log('--------get userinfo--------');
-    console.log(userInfo);
-    console.log('--------get userinfo--------');
     return (
       <div className="userInfoCss">
         <div className="img01"></div>
         <div>
-          {errorMsg}
-        </div>
-        <div>
-          {errorMsg}
-        </div>
-        {
-          isLoading ? '请示信息中' :
-            (
-              <div>
-                <p>用户信息</p>
-                <p>用户名称:{userInfo && userInfo.name}</p>
-                <p>介绍:{userInfo && userInfo.intro}</p>
-              </div>
-            )
-        }
-        <div>
           <button onClick={() => {
-            this.props.getUserInfo()
+            this.props.getUserInfo().then((data) => {
+              console.log(data)
+            }, (err) => {
+              console.log(err);
+            });
           }}>请求用户信息</button>
         </div>
+        <div>
+          {errorMsg}
+        </div>
+
+        {
+          !isLoading &&
+          <div>
+            <p>用户信息</p>
+            <p>用户名称:{userInfo && userInfo.name}</p>
+            <p>介绍:{userInfo && userInfo.intro}</p>
+          </div>
+        }
+
       </div>
     );
   }

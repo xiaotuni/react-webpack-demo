@@ -23,7 +23,8 @@ export default function reducer(state = initState, action) {
     case GET_USER_INFO_SUCCESS:
       return {
         ...state,
-        isLoading: false, userInfo: action.userInfo,
+        isLoading: false,
+        userInfo: action.result,
         errorMsg: '成功了',
       }
     default:

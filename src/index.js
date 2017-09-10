@@ -2,8 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
-import store from './redux/store';
-
+import store, { BuildStore } from './redux/store';
+import ApiClient from './helpers/ApiClient'
+console.log('---------store------------');
+console.log(store);
+const ApiClientStore = BuildStore(new ApiClient());
+console.log(ApiClientStore);
+console.log('---------store------------');
 import getRouter from './router/router';
 
 /*初始化*/
@@ -20,7 +25,7 @@ if (module.hot) {
 function renderWithHotReload(RootElement) {
   ReactDOM.render(
     <AppContainer>
-      <Provider store={store}>
+      <Provider store={ApiClientStore}>
         {RootElement}
       </Provider>
     </AppContainer>,
