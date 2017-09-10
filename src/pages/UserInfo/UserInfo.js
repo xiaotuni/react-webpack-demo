@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUserInfo } from "actions/userInfo";
+
+require('./UserInfo.css');
+
+
 class UserInfo extends Component {
   static propTypes = {
     userInfo: PropTypes.object,
@@ -17,7 +21,8 @@ class UserInfo extends Component {
     console.log(userInfo);
     console.log('--------get userinfo--------');
     return (
-      <div>
+      <div className="userInfoCss">
+        <div className="img01"></div>
         {
           errorMsg
         }
