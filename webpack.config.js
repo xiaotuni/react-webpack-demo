@@ -1,8 +1,12 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 清空打包目录
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+// 代码丑化
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+// 抽取css
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -21,7 +25,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, use: ['babel-loader?cacheDirectory=true'], include: path.join(__dirname, 'src') },
-      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.css$/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }) },
       { test: /\.(png|jpg|gif)$/, use: [{ loader: 'url-loader', options: { limit: 8192 } }] },
     ]
   },
@@ -42,6 +46,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist/www']),
+    new ExtractTextPlugin({ filename: '[name].[contenthash:5].css', allChunks: true }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, 'src/index.html')
