@@ -32,6 +32,7 @@ const getRouters = () => (
         <li> <Link to="/counter">Counter</Link> </li>
         <li> <Link to="/userinfo">UserInfo</Link> </li>
       </ul>
+      <Route path="/" component={CreateComponent(Home)} />
       <Switch>
         <Route exact path="/" component={CreateComponent(Home)} />
         <Route path="/page1" component={CreateComponent(Page1)} />
@@ -41,7 +42,6 @@ const getRouters = () => (
         <Route path='/counter' component={CreateComponent(Counter)} />
         <Route path='/userinfo' component={CreateComponent(UserInfo)} />
       </Switch>
-
     </div>
   </Router>
 );

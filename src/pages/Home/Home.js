@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 const styles = require('./scss/Home.scss');
 
 export default class Home extends Component {
+  static propTypes = {
+    children: PropTypes.object,                                // 子项
+    location: PropTypes.object,                                           // location信息
+  };
+
   constructor(props) {
     super(props);
   }
@@ -18,6 +23,9 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log('-------- this.props.children---------');
+    console.log(this.props.children);
+    console.log('-------- this.props.children---------');
     return (
       <div className={styles.homeCss}>
         <div>
@@ -26,6 +34,7 @@ export default class Home extends Component {
         <div className={styles.btns}>
           <div className={styles.btn} onClick={this.__HandlerJudgPage.bind(this)}>跳转</div>
         </div>
+       
       </div>
     );
   }
