@@ -21,7 +21,7 @@ const Config = {
         include: path.join(__dirname, 'src')
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
         use: [
           {
             loader: 'url-loader',

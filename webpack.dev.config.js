@@ -18,23 +18,24 @@ const devConfig = {
   module: {
     rules: [
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-      // {
-      //   test: /\.scss$/,
-      //   use: ['style-loader', 'css-loader', 'sass-loader']
-      // },
       {
         test: /\.scss$/,
-        use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader", options: {
-            sourceMap: true
-          }
-        }, {
-          loader: "sass-loader", options: {
-            sourceMap: true
-          }
-        }]
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader", options: {
+              sourceMap: true,
+              modules: true, minimize: true,
+              localIdentName: '[local]_[hash:base64:5]'
+            }
+          },
+          {
+            loader: "sass-loader", options: {
+              sourceMap: true
+            }
+          }]
       }
     ]
   },
@@ -45,7 +46,7 @@ const devConfig = {
     host: '0.0.0.0'
   },
 }
-const m = merge({
+const mergeCfg = merge({
   customizeArray(a, b, key) {
     /*entry.app不合并，全替换*/
     if (key === 'entry.app') {
@@ -55,9 +56,7 @@ const m = merge({
   }
 })(CommCfg, devConfig);
 
-console.log(m);
-console.log('-------merge---------');
-module.exports = m;
+module.exports = mergeCfg;
 
 
 // module.exports = {
