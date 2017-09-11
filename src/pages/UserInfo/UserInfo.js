@@ -10,9 +10,17 @@ class UserInfo extends Component {
   static propTypes = {
     userInfo: PropTypes.object,
   }
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+    // history: PropTypes.object,
+  }
 
   constructor(props) {
     super(props);
+  }
+
+  __HandlerGoBack() {
+    this.context.router.history.goBack();
   }
 
   render() {
@@ -22,7 +30,7 @@ class UserInfo extends Component {
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
       <div className="userInfoCss">
-        <div className={styles.a}>
+        <div className={styles.a} onClick={this.__HandlerGoBack.bind(this)}>
           哈哈!!
         </div>
         <div className="img01"></div>
