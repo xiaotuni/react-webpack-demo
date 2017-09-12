@@ -9,6 +9,8 @@ const history = createHistory();
 const ApiClientStore = BuildStore(new ApiClient(), history);
 import getRouter from './router/router';
 import { Router } from 'react-router'
+import pageComponent from 'pages/index';
+const { App } = pageComponent;
 
 /*初始化*/
 renderWithHotReload(getRouter());
@@ -24,7 +26,7 @@ if (module.hot) {
 function renderWithHotReload(RootElement) {
   ReactDOM.render(
     <AppContainer>
-      <Provider store={ApiClientStore}>
+      <Provider store={ApiClientStore} key="provider">
         <Router history={history}>
           {RootElement}
         </Router>

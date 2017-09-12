@@ -7,6 +7,7 @@
 // export UserInfo from './UserInfo/UserInfo';
 
 
+import App from 'pages/App';
 import Page1 from 'bundle-loader?lazy&name=page1!pages/page1';
 import Page2 from 'bundle-loader?lazy&name=page2!pages/page2';
 import Page3 from 'bundle-loader?lazy&name=page3!pages/page3';
@@ -16,5 +17,5 @@ import Counter from 'bundle-loader?lazy&name=counter!pages/Counter/Counter';
 import UserInfo from 'bundle-loader?lazy&name=userInfo!pages/UserInfo/UserInfo';
 
 export default {
-  Page1, Page2, Page3, Page4, Home, Counter, UserInfo
+  App, Page1, Page2, Page3, Page4, Home, Counter, UserInfo
 }
