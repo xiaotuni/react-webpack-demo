@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUserInfo } from "actions/userInfo";
+import Utility from '../../Common/Utility';
 
 require('./UserInfo.css');
 
-
-class UserInfo extends Component {
+@connect((state) => ({ userInfo: state.userInfo }), { getUserInfo })
+export default class UserInfo extends Component {
   static propTypes = {
     userInfo: PropTypes.object,
   }
@@ -20,13 +21,12 @@ class UserInfo extends Component {
   }
 
   __HandlerGoBack() {
-    this.context.router.history.goBack();
+    // this.context.router.history.goBack();
+    Utility.goBack();
   }
 
   render() {
     const styles = require('./ui.scss');
-    console.log(styles);
-    console.log('-------styles---123----end-------');
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
       <div className="userInfoCss">
@@ -61,5 +61,5 @@ class UserInfo extends Component {
   }
 }
 
-export default connect((state) => ({ userInfo: state.userInfo }), { getUserInfo })(UserInfo);
+// export default connect((state) => ({ userInfo: state.userInfo }), { getUserInfo })(UserInfo);
 
