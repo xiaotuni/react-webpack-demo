@@ -17,7 +17,9 @@ const Config = {
     rules: [
       {
         test: /\.js$/,
-        use: ['babel-loader?cacheDirectory=true'],
+        use: [
+          "babel-loader?cacheDirectory=true"
+        ],
         include: path.join(__dirname, 'src')
       },
       {
