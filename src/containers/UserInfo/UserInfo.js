@@ -7,8 +7,8 @@ const comStyles = require('styles/Common.scss');
 
 require('./UserInfo.css');
 
-
-class UserInfo extends Component {
+@connect((state) => ({ userInfo: state.userInfo }), { getUserInfo })
+export default class UserInfo extends Component {
   static propTypes = {
     userInfo: PropTypes.object,
   }
@@ -36,7 +36,7 @@ class UserInfo extends Component {
           <button onClick={() => Utility.$goBack()}>go back</button>
         </div>
         <div className={styles.a} onClick={this.__HandlerGoBack.bind(this)}>
-          哈哈!!看看了,containers123
+          哈哈!!看看了,containers
         </div>
         <div className="img01"></div>
         <div>
@@ -66,5 +66,5 @@ class UserInfo extends Component {
   }
 }
 
-export default connect((state) => ({ userInfo: state.userInfo }), { getUserInfo })(UserInfo);
+// export default connect((state) => ({ userInfo: state.userInfo }), { getUserInfo })(UserInfo);
 

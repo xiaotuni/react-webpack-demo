@@ -20,6 +20,12 @@ export default class Home extends Component {
 
   componentWillMount() {
     Utility.setContent('___history___', this.context.router.history);
+    this.context.router.history.listen((location, action) => {
+      console.log('-----------home begin-------------');
+      console.log('location is', location)
+      console.log('action is', action)
+      console.log('-----------home end---------------');
+    });
   }
 
   __HandlerJudgPage() {
@@ -34,7 +40,7 @@ export default class Home extends Component {
     return (
       <div className={styles.homeCss}>
         <div>
-          这是首页啦~~~asdaa
+          这是首页啦~~~asdaaaaa
         </div>
         <div className={styles.btns}>
           <div className={styles.btn} onClick={this.__HandlerJudgPage.bind(this)}>跳转</div>
