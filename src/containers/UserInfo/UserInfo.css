@@ -1,0 +1,13 @@
+.userInfoCss {
+  border: 1px solid yellow;
+  padding: 10px 20px;
+}
+
+.userInfoCss .img01{
+  width: 100%;
+  height: 48px;
+  background-image: url('./img/smiley_0.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

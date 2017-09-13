@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import pageComponent from '../pages/index';
+import pageComponent from 'containers';
 const { UserInfo, Counter, Home, Page1, Page2, Page3, Page4 } = pageComponent;
 
 import Bundle from './Bundle';

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUserInfo } from "actions/userInfo";
 import { Utility } from 'components';
+const comStyles = require('styles/Common.scss');
 
 require('./UserInfo.css');
 
@@ -30,8 +31,12 @@ class UserInfo extends Component {
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
       <div className="userInfoCss">
+        <div className={comStyles.btns}>
+          <button onClick={() => Utility.toPage('page1')}>go to page1</button>
+          <button onClick={() => Utility.$goBack()}>go back</button>
+        </div>
         <div className={styles.a} onClick={this.__HandlerGoBack.bind(this)}>
-          哈哈!!看看了,containers
+          哈哈!!看看了,containers123
         </div>
         <div className="img01"></div>
         <div>
