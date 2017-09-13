@@ -45,16 +45,10 @@ export default class Home extends Component {
   render() {
     const { UrlTitle } = this.state;
     const { Title } = UrlTitle || {};
+
     return (
       <div className={styles.homeCss}>
         <Navbar Title={Title} />
-        <DefHref />
-        <div>
-          这是首页啦~~~asdaaaaa
-        </div>
-        <div className={styles.btns}>
-          <div className={styles.btn} onClick={this.__HandlerJudgPage.bind(this)}>跳转</div>
-        </div>
 
       </div>
     );
