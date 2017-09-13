@@ -11,7 +11,7 @@ export default class Page2 extends Component {
       <div>
         哈哈这是Page2
         <div>
-          哈哈，看看噘adadfsa
+          11abbbaaaaccca
         </div>
         {
           this.state.count

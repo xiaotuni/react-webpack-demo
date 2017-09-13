@@ -38,6 +38,10 @@ const Config = {
       router: path.join(__dirname, 'src/router'),
       actions: path.join(__dirname, 'src/redux/actions'),
       reducers: path.join(__dirname, 'src/redux/reducers'),
+      containers: path.join(__dirname, 'src/containers'),
+      components: path.join(__dirname, 'src/components'),
+      common: path.join(__dirname, 'src/common'),
+      styles: path.join(__dirname, 'src/styles'),
     }
   },
   plugins: [

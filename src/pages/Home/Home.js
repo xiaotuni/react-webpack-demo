@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Utility } from 'components';
 
 const styles = require('./scss/Home.scss');
 
@@ -8,22 +9,26 @@ export default class Home extends Component {
     children: PropTypes.object,                                // 子项
     location: PropTypes.object,                                           // location信息
   };
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+    // history: PropTypes.object,
+  }
 
   constructor(props) {
     super(props);
   }
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-    // history: PropTypes.object,
+  componentWillMount() {
+    Utility.setContent('___history___', this.context.router.history);
   }
+
   __HandlerJudgPage() {
     console.log('-----------');
-    this.context.router.history.push('/userinfo');
+    Utility.toPage('userinfo');
+    // this.context.router.history.push('/userinfo');
   }
 
   render() {
-    console.log('-------- this.props.children---------');
     console.log(this.props.children);
     console.log('-------- this.props.children---------');
     return (
@@ -34,7 +39,7 @@ export default class Home extends Component {
         <div className={styles.btns}>
           <div className={styles.btn} onClick={this.__HandlerJudgPage.bind(this)}>跳转</div>
         </div>
-       
+
       </div>
     );
   }

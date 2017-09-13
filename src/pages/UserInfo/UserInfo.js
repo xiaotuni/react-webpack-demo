@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUserInfo } from "actions/userInfo";
+import { Utility } from 'components';
 
 require('./UserInfo.css');
 
@@ -20,18 +21,17 @@ class UserInfo extends Component {
   }
 
   __HandlerGoBack() {
-    this.context.router.history.goBack();
+    // this.context.router.history.goBack();
+    Utility.$goBack();
   }
 
   render() {
     const styles = require('./ui.scss');
-    console.log(styles);
-    console.log('-------styles---123----end-------');
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
       <div className="userInfoCss">
         <div className={styles.a} onClick={this.__HandlerGoBack.bind(this)}>
-          哈哈!!
+          哈哈!!看看了
         </div>
         <div className="img01"></div>
         <div>
