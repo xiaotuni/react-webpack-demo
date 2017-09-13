@@ -17,11 +17,10 @@ export default class Page2 extends Component {
         </div>
         哈哈这是Page2
         <div>
-          11abbbaaaaccca
+          {
+            this.state.count
+          }
         </div>
-        {
-          this.state.count
-        }
         <button onClick={() => {
           this.setState({ count: this.state.count + 1 })
         }}>添加 </button>

@@ -22,7 +22,7 @@ const CreateComponent = (component) => () => (
 const getRouters = () => (
   <Router>
     <div>
-      <ul>
+      {/* <ul>
         <li> <Link to="/">首页</Link> </li>
         <li> <Link to="/page1">page1</Link> </li>
         <li> <Link to="/page2">page2</Link> </li>
@@ -30,7 +30,7 @@ const getRouters = () => (
         <li> <Link to="/page4">page4</Link> </li>
         <li> <Link to="/counter">Counter</Link> </li>
         <li> <Link to="/userinfo">UserInfo</Link> </li>
-      </ul>
+      </ul> */}
       <Route path="/" component={CreateComponent(Home)} />
       <Switch>
         <Route exact path="/" component={CreateComponent(Home)} />

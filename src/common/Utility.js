@@ -89,10 +89,21 @@ export default class Utility {
     UrlItem: {
       GoBack: 'goBack',                                                    // 回退操作
       Login: 'login',                                                      // 登录
-      Default: 'default',                                                  // 首页-->商品列表
+      Page1: 'page1',                                                  // 首页-->商品列表
+      Page2: 'page2',                                                  // 首页-->商品列表
+      Page3: 'page3',                                                  // 首页-->商品列表
+      Page4: 'page4',                                                  // 首页-->商品列表
+      Counter: 'counter',                                                  // 首页-->商品列表
+      UserInfo: 'userinfo',                                                  // 首页-->商品列表
     },
     UrlTitle: {
-      '/default': { Title: '默认页面', Index: 1 },
+      '/': { Title: '默认页面', Index: 0 },
+      '/page1': { Title: 'page1', Index: 0 },
+      '/page2': { Title: 'page2', Index: 0 },
+      '/page3': { Title: 'page3', Index: 0 },
+      '/page4': { Title: 'page4', Index: 0 },
+      '/counter': { Title: '计数', Index: 0 },
+      '/userinfo': { Title: '用户信息', Index: 0 },
     },
     /**
      * 显示模式

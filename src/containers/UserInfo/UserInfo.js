@@ -22,7 +22,6 @@ export default class UserInfo extends Component {
   }
 
   __HandlerGoBack() {
-    // this.context.router.history.goBack();
     Utility.$goBack();
   }
 

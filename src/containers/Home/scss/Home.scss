@@ -1,12 +1,13 @@
 .homeCss {
   position: relative;
   width: 100%;
+  margin-top: 45px;
 
   .btns {
     margin: 10px;
     display: flex;
 
-    >div {
+    > div {
       padding: 5px 25px;
       text-align: center;
       border: 1px solid #eee;

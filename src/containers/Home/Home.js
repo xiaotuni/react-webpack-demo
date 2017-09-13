@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Utility } from 'components';
+import { Utility, Navbar, DefHref } from 'components';
 
 const styles = require('./scss/Home.scss');
 
@@ -16,29 +16,39 @@ export default class Home extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   componentWillMount() {
     Utility.setContent('___history___', this.context.router.history);
+    const self = this;
+    const UrlTitle = Utility.constItem.UrlTitle;
     this.context.router.history.listen((location, action) => {
       console.log('-----------home begin-------------');
-      console.log('location is', location)
-      console.log('action is', action)
+      console.log('location is', location, 'action is', action)
       console.log('-----------home end---------------');
+      const { pathname } = location;
+      if (UrlTitle && UrlTitle[pathname]) {
+        self.state.UrlTitle = UrlTitle[pathname];
+        self.__UpdateRender();
+      }
     });
+  }
+  __UpdateRender() {
+    this.setState({ __CURRENT_TIME_: new Date() });
   }
 
   __HandlerJudgPage() {
-    console.log('-----------');
     Utility.toPage('userinfo');
-    // this.context.router.history.push('/userinfo');
   }
 
   render() {
-    console.log(this.props.children);
-    console.log('-------- this.props.children---------');
+    const { UrlTitle } = this.state;
+    const { Title } = UrlTitle || {};
     return (
       <div className={styles.homeCss}>
+        <Navbar Title={Title} />
+        <DefHref />
         <div>
           这是首页啦~~~asdaaaaa
         </div>
