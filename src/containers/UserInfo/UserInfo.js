@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getUserInfo } from "actions/userInfo";
-import Utility from '../../Common/Utility';
+import { getUserInfo } from 'actions/userInfo';
+import { Utility } from 'components';
+const comStyles = require('styles/Common.scss');
 
 require('./UserInfo.css');
 
@@ -10,6 +11,7 @@ require('./UserInfo.css');
 export default class UserInfo extends Component {
   static propTypes = {
     userInfo: PropTypes.object,
+    getUserInfo: PropTypes.func,
   }
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -18,11 +20,12 @@ export default class UserInfo extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {};
+    this.__HandlerGoBack = this.__HandlerGoBack.bind(this);
   }
 
   __HandlerGoBack() {
-    // this.context.router.history.goBack();
-    Utility.goBack();
+    Utility.$goBack();
   }
 
   render() {
@@ -30,14 +33,18 @@ export default class UserInfo extends Component {
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
       <div className="userInfoCss">
-        <div className={styles.a} onClick={this.__HandlerGoBack.bind(this)}>
-          哈哈!!
+        <div className={comStyles.btns}>
+          <button onClick={() => Utility.toPage('page1')}>go to page1</button>
+          <button onClick={() => Utility.$goBack()}>go back</button>
         </div>
-        <div className="img01"></div>
+        <div className={styles.a} onClick={this.__HandlerGoBack}>
+          哈哈!!看看了,containers
+        </div>
+        <div className="img01" />
         <div>
           <button onClick={() => {
             this.props.getUserInfo().then((data) => {
-              console.log(data)
+              console.log(data);
             }, (err) => {
               console.log(err);
             });

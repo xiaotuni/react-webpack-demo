@@ -1,0 +1,10 @@
+.btns {
+  display: flex;
+
+  .btn,
+  button {
+    padding: 5px 15px;
+    text-align: center;
+    margin: 5px;
+  }
+}
