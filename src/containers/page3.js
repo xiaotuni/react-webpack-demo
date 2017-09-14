@@ -5,7 +5,7 @@ const comStyles = require('styles/Common.scss');
 export default class Page3 extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {};
   }
 
@@ -17,7 +17,7 @@ export default class Page3 extends Component {
           <button onClick={() => Utility.$goBack()}>go back</button>
 
           <div onClick={() => {
-            setTimeout(() => {  }, 1000);
+            setTimeout(() => { }, 1000);
           }}> aaaaaaaa</div>
         </div>
         哈哈这是Page3

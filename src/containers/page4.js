@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Utility } from 'components';
 const comStyles = require('styles/Common.scss');
 

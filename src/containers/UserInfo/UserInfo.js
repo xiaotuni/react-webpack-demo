@@ -38,7 +38,7 @@ export default class UserInfo extends Component {
           <button onClick={() => Utility.$goBack()}>go back</button>
         </div>
         <div className={styles.a} onClick={this.__HandlerGoBack}>
-          哈哈!!看看了,containers
+          哈哈!!看看了
         </div>
         <div className="img01" />
         <div>

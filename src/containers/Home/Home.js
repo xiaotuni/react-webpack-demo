@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Utility, Navbar } from 'components';
+import { Utility } from 'components';
 
 const styles = require('./scss/Home.scss');
 
@@ -55,15 +55,14 @@ export default class Home extends Component {
   __HandlerJudgPage() {
     Utility.toPage('userinfo');
   }
-
+  // <Navbar Title={Title} />
   render() {
-    const { UrlTitle } = this.state;
-    const { Title } = UrlTitle || {};
+    // const { UrlTitle } = this.state;
+    // const { Title } = UrlTitle || {};
 
     return (
       <div className={styles.homeCss}>
-        <Navbar Title={Title} />
-
+        {}
       </div>
     );
   }
