@@ -20,22 +20,36 @@ export default class Home extends Component {
   }
 
   componentWillMount() {
-    Utility.setContent('___history___', this.context.router.history);
-    const self = this;
-    const UrlTitle = Utility.constItem.UrlTitle;
-    this.context.router.history.listen((location, action) => {
-      console.log('-----------home begin-------------');
-      console.log('location is', location, 'action is', action);
-      console.log('-----------home end---------------');
-      const { pathname } = location;
-      if (UrlTitle && UrlTitle[pathname]) {
-        self.state.UrlTitle = UrlTitle[pathname];
-        self.__UpdateRender();
-      }
-    });
+    const __key = '___history___';
+    if (!Utility.getContent(__key)) {
+      Utility.setContent(__key, this.context.router.history);
+      const self = this;
+      const UrlTitle = Utility.constItem.UrlTitle;
+      this.context.router.history.listen((location, action) => {
+        console.log('location is', location, 'action is', action);
+        console.log('-----------home end---------------');
+        const { pathname } = location;
+        if (UrlTitle && UrlTitle[pathname]) {
+          self.state.UrlTitle = UrlTitle[pathname];
+          self.__UpdateRender();
+        }
+      });
+    }
   }
+
+  componentDidMount() {
+    this.state.IsMount = true;
+  }
+
+  componentWillUnmount() {
+    delete this.state.IsMount;
+    console.log('-------home-----component Will Umount');
+  }
+
   __UpdateRender() {
-    this.setState({ __CURRENT_TIME_: new Date() });
+    if (!!this.state.IsMount) {
+      this.setState({ __CURRENT_TIME_: new Date() });
+    }
   }
 
   __HandlerJudgPage() {
