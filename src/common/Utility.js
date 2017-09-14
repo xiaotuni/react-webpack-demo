@@ -148,7 +148,7 @@ export default class Utility {
       const ua = window.navigator.userAgent.toLowerCase();
       const isWeiXin = ua.match(/micromessenger/i).indexOf('micromessenger');
       console.log(isWeiXin);
-      return isWeiXin >= 0 ? true : false;
+      return isWeiXin >= 0;
     } catch (ex) {
       return false;
     }
@@ -217,6 +217,7 @@ export default class Utility {
       const num = userAgent.substr(userAgent.indexOf('Android') + 8, 3);
       return { type: 'Android', version: num };
     }
+    return null;
   }
 
   /**
@@ -257,7 +258,7 @@ export default class Utility {
       'm+': __this.getMinutes(), // 分
       's+': __this.getSeconds(), // 秒
       'q+': Math.floor((__this.getMonth() + 3) / 3), // 季度
-      'S': __this.getMilliseconds() // 毫秒
+      S: __this.getMilliseconds() // 毫秒
     };
     if (/(y+)/.test(_fmt)) {
       /(y+)/.exec(_fmt);
@@ -395,7 +396,7 @@ export default class Utility {
       if (key === null || typeof key === 'undefined') {
         return;
       }
-      if (__self._TempSaveContent.hasOwnProperty(key)) {
+      if (__self._TempSaveContent[key]) {
         delete __self._TempSaveContent[key];
       }
 
@@ -418,7 +419,7 @@ export default class Utility {
     try {
       let __Content = null;
       const __self = this.instance();
-      if (__self._TempSaveContent.hasOwnProperty(key)) {
+      if (__self._TempSaveContent[key]) {
         __Content = __self._TempSaveContent[key];
         return __Content;
       }
@@ -429,18 +430,9 @@ export default class Utility {
         const _value = window.localStorage.getItem(key);
         if (_value !== null && _value !== '' && typeof _value !== 'undefined') {
           const __JSONValue = JSON.parse(_value);
-          __self._TempSaveContent[key] = JSON.parse(_value);
+          __self._TempSaveContent[key] = __JSONValue;
           if (IsUser) {
-            if (__self._TempSaveContent.hasOwnProperty(this.constItem.API.UserInfo)) {
-              const __UserInfo = __self._TempSaveContent[this.constItem.API.UserInfo];
-              if (__JSONValue.hasOwnProperty(__UserInfo.member_id)) {
-                __self._TempSaveContent[key] = __JSONValue[__UserInfo.member_id];
-              } else {
-                __self._TempSaveContent[key] = null;
-              }
-            } else {
-              __self._TempSaveContent[key] = null;
-            }
+            // 
           }
           __Content = __self._TempSaveContent[key];
         }
@@ -590,7 +582,7 @@ export default class Utility {
         }
       }
     });
-    return __KeyValue.join(split ? split : '&');
+    return __KeyValue.join(split || '&');
   }
 
   /**
@@ -630,7 +622,7 @@ export default class Utility {
     const __pgIndex = __Condition.pgIndex || 0;
     const __pgCount = __Condition.pgCount || this.constItem.PageSize;
     const __Result = action.result;
-    __Condition.IsExistsNextData = action.result.length < __pgCount ? false : true;
+    __Condition.IsExistsNextData = action.result.length === __pgCount;
     if (__pgIndex !== 0 && Utility.isArray(state[fieldName].List)) {
       state[fieldName].List = state[fieldName].List.concat(__Result);
     } else {
@@ -697,7 +689,7 @@ export default class Utility {
           default:
             break;
         }
-        __index++;
+        __index += 1;
       }
       return val;
     });
@@ -752,19 +744,18 @@ export default class Utility {
         const len = seg.length;
         let ii = 0;
         let ss;
-        for (; ii < len; ii++) {
-          if (!seg[ii]) {
-            continue;
+        for (; ii < len; ii += 1) {
+          if (seg[ii]) {
+            ss = seg[ii].split('=');
+            ret[ss[0]] = ss[1];
           }
-          ss = seg[ii].split('=');
-          ret[ss[0]] = ss[1];
         }
         return ret;
       })(),
-      file: (ae.pathname.match(/\/([^\/?#]+)$/i) || [''])[1],
+      file: (ae.pathname.match(/\/([^/?#]+)$/i) || [''])[1],
       hash: ae.hash.replace('#', ''),
-      path: ae.pathname.replace(/^([^\/])/, '/$1'),
-      relative: (ae.href.match(/tps?:\/\/[^\/]+(.+)/) || [''])[1],
+      path: ae.pathname.replace(/^([^/])/, '/$1'),
+      relative: (ae.href.match(/tps?:\/\/[^/]+(.+)/) || [''])[1],
       segments: ae.pathname.replace(/^\//, '').split('/')
     };
   }
@@ -837,7 +828,7 @@ export default class Utility {
    */
   static $actionSheet(Content, Title, ToPage) {
     this.$emit(this.constItem.Events.ShowModel.OnActionSheet, {
-      Title: Title, ContentInfo: { Content: Content }, ToPage: ToPage
+      Title, ContentInfo: { Content }, ToPage
     });
   }
 
@@ -850,15 +841,16 @@ export default class Utility {
    */
   static $confirm(Message, okButton, Title, onCancel, options) {
     this.$emit(this.constItem.Events.ShowModel.OnConfirm,
-      { Title: Title, Content: Message, okButton: okButton, onCancel: onCancel, Options: options }
+      { Title, Content: Message, okButton, onCancel, Options: options }
     );
   }
 
   static $showDialog(Html, Title, okButton, onCancel, Options) {
-    this.$emit(this.constItem.Events.ShowModel.OnShowDialog, {
-      Title: Title, Html: Html, okButton: okButton, onCancel: onCancel, isShowAction: true, Options:
-      Object.assign(Options || {}, { IsHideCancel: true, IsHideOk: true })
-    });
+    this.$emit(this.constItem.Events.ShowModel.OnShowDialog,
+      {
+        Title, Html, okButton, onCancel, isShowAction: true,
+        Options: Object.assign(Options || {}, { IsHideCancel: true, IsHideOk: true })
+      });
   }
 
   static $showDialogHide(args) {
@@ -873,7 +865,7 @@ export default class Utility {
       _okButton = Title;
     }
     this.$emit(this.constItem.Events.ShowModel.OnShowDialog,
-      { Content: msg, Title: _title, okButton: _okButton, onCancel: onCancel }
+      { Content: msg, Title: _title, okButton: _okButton, onCancel }
     );
   }
   static $alert(msg, title) {
@@ -949,7 +941,7 @@ export default class Utility {
   static $navBarRightAddButton(Text, onClick, Color, BgColor) {
     this.$emit(this.constItem.Events.OnEditNavBarRight,
       this.constItem.NavBarRightType.NBButton,
-      { Text: Text, onClick: onClick, Color: Color, BgColor: BgColor });
+      { Text, onClick, Color, BgColor });
   }
 
   /**
@@ -960,7 +952,7 @@ export default class Utility {
   static $navBarRightAddIcon(Icon, onClick) {
     this.$emit(this.constItem.Events.OnEditNavBarRight,
       this.constItem.NavBarRightType.NBIcon,
-      { Icon: Icon, onClick: onClick });
+      { Icon, onClick });
   }
 
   /**
@@ -974,7 +966,7 @@ export default class Utility {
   static $iComMenuAddIcon(onClick) {
     this.$emit(this.constItem.Events.OnEditNavBarRight,
       this.constItem.NavBarRightType.NBIcon,
-      { Icon: this.constItem.Status.IComMenuIcon.Add, onClick: onClick });
+      { Icon: this.constItem.Status.IComMenuIcon.Add, onClick });
   }
 
   /**
@@ -988,7 +980,7 @@ export default class Utility {
   static $iComMenuSearchIcon(onClick) {
     this.$emit(this.constItem.Events.OnEditNavBarRight,
       this.constItem.NavBarRightType.NBIcon,
-      { Icon: this.constItem.Status.IComMenuIcon.Search, onClick: onClick });
+      { Icon: this.constItem.Status.IComMenuIcon.Search, onClick });
   }
 
   /**
@@ -1001,7 +993,7 @@ export default class Utility {
    * @memberOf Utility
    */
   static $iComSetTitle(title, onClick) {
-    this.$emit(this.constItem.Events.OnSetTitle, { title: title, onClick: onClick });
+    this.$emit(this.constItem.Events.OnSetTitle, { title, onClick });
   }
 
   static $iComShowCloseBtn() {
@@ -1171,7 +1163,7 @@ export default class Utility {
       return '';
     }
     const __Value = obj[status];
-    return __Value ? __Value : status;
+    return __Value || status;
   }
 
   /**
@@ -1200,7 +1192,11 @@ export default class Utility {
       return number;
     }
     const __value = this.$trim(number);
-    return String(__value).split('').reverse().join('').replace(/(\d{3})(?=[^$])/g, '$1,').split('').reverse().join('');
+    return String(__value).split('').reverse().join('')
+      .replace(/(\d{3})(?=[^$])/g, '$1,')
+      .split('')
+      .reverse()
+      .join('');
   }
 
   /**
@@ -1244,6 +1240,6 @@ export default class Utility {
    * @memberOf Utility
    */
   static $goBack(times) {
-    this.toPage(this.constItem.UrlItem.GoBack, { times: times });
+    this.toPage(this.constItem.UrlItem.GoBack, { times });
   }
 }

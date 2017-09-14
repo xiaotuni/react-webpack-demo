@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Utility } from 'components';
 const styles = require('./scss/DefHref.scss');
 
@@ -11,6 +11,7 @@ export default class DefHref extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   __HandlerToJump(url, key) {
@@ -35,7 +36,6 @@ export default class DefHref extends Component {
   }
 
   render() {
-
     return (
       <div className={styles.defHrefCss}>
         <div className={styles.groups}>

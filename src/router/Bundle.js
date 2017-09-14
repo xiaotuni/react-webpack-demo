@@ -2,12 +2,15 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class Bundle extends Component {
-  state = {
-    mod: null // short for "module" but that's keyword in js,so "mod"
+  static propTypes = {
+    load: PropTypes.any,
+    children: PropTypes.any,
   }
-
   constructor(props) {
     super(props);
+    this.state = {
+      mod: null // short for "module" but that's keyword in js,so "mod"
+    };
   }
 
   componentWillMount() {

@@ -6,6 +6,7 @@ const comStyles = require('styles/Common.scss');
 export default class Page4 extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {

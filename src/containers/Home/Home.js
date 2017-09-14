@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Utility, Navbar, DefHref } from 'components';
+import { Utility, Navbar } from 'components';
 
 const styles = require('./scss/Home.scss');
 

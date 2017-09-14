@@ -7,6 +7,7 @@ const styles = require('./page.scss');
 export default class Page1 extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {

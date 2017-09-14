@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { increment, decrement, reset } from 'actions/counter';
+import * as cActions from 'reducers/counter';
 import { Utility } from 'components';
 const comStyles = require('styles/Common.scss');
 
-class Counter extends Component {
+@connect((state) => ({ counter: state.counter }), { ...cActions })
+export default class Counter extends Component {
   static propTypes = {
     increment: PropTypes.func,
     decrement: PropTypes.func,
@@ -14,6 +15,7 @@ class Counter extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {
@@ -48,21 +50,21 @@ class Counter extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { counter: state.counter };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    increment: () => {
-      dispatch(increment);
-    },
-    decrement: () => {
-      dispatch(decrement);
-    },
-    reset: () => {
-      dispatch(reset);
-    },
-  };
-};
+// const mapStateToProps = (state) => {
+//   return { counter: state.counter };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     increment: () => {
+//       dispatch(increment);
+//     },
+//     decrement: () => {
+//       dispatch(decrement);
+//     },
+//     reset: () => {
+//       dispatch(reset);
+//     },
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+// export default connect(mapStateToProps, mapDispatchToProps)(Counter);
