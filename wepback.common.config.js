@@ -18,7 +18,24 @@ const Config = {
       {
         test: /\.js$/,
         use: [
-          "babel-loader?cacheDirectory=true"
+          "babel-loader?cacheDirectory=true",
+          {
+            loader: "eslint-loader", options: {
+              // // several examples !
+              // // default value
+              // formatter: require("eslint/lib/formatters/stylish"),
+              // // community formatter
+              // // formatter: require("eslint-friendly-formatter"),
+              // // custom formatter
+              // formatter: function (results) {
+              //   // `results` format is available here
+              //   // http://eslint.org/docs/developer-guide/nodejs-api.html#executeonfiles()
+              //   // you should return a string
+              //   // DO NOT USE console.*() directly !
+              //   return "OUTPUT";
+              // }
+            }
+          }
         ],
         include: path.join(__dirname, 'src')
       },
@@ -55,6 +72,6 @@ const Config = {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'runtime' }),
   ],
-}
+};
 
 module.exports = Config;

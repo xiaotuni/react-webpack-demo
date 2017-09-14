@@ -25,7 +25,7 @@ export default class Home extends Component {
     const UrlTitle = Utility.constItem.UrlTitle;
     this.context.router.history.listen((location, action) => {
       console.log('-----------home begin-------------');
-      console.log('location is', location, 'action is', action)
+      console.log('location is', location, 'action is', action);
       console.log('-----------home end---------------');
       const { pathname } = location;
       if (UrlTitle && UrlTitle[pathname]) {

@@ -8,7 +8,7 @@ import Bundle from './Bundle';
 
 const Loading = () => {
   return <div>Loading...</div>;
-}
+};
 
 const CreateComponent = (component) => () => (
   <Bundle load={component}>
@@ -16,8 +16,7 @@ const CreateComponent = (component) => () => (
       (Component) => Component ? <Component /> : <Loading />
     }
   </Bundle>
-)
-
+);
 
 const getRouters = () => (
   <Router>

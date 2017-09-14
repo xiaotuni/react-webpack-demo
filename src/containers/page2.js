@@ -5,7 +5,7 @@ const comStyles = require('styles/Common.scss');
 export default class Page2 extends Component {
   constructor(props) {
     super(props);
-    this.state = { count: 0 }
+    this.state = { count: 0 };
   }
 
   render() {
@@ -22,7 +22,7 @@ export default class Page2 extends Component {
           }
         </div>
         <button onClick={() => {
-          this.setState({ count: this.state.count + 1 })
+          this.setState({ count: this.state.count + 1 });
         }}>添加 </button>
       </div>
     );

@@ -9,4 +9,4 @@ import UserInfo from 'bundle-loader?lazy&name=userInfo!containers/UserInfo/UserI
 
 export default {
   Default, Page1, Page2, Page3, Page4, Home, Counter, UserInfo
-}
+};

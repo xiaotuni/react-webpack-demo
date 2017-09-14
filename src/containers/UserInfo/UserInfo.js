@@ -41,7 +41,7 @@ export default class UserInfo extends Component {
         <div>
           <button onClick={() => {
             this.props.getUserInfo().then((data) => {
-              console.log(data)
+              console.log(data);
             }, (err) => {
               console.log(err);
             });

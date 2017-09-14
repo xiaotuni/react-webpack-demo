@@ -6,9 +6,7 @@ import clientMiddleware from './middleware/clientMiddleware.js';
 // let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 // export default store;
 
-
-
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 
 export function BuildStore(client, history) {
 

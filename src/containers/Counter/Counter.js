@@ -49,7 +49,7 @@ class Counter extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { counter: state.counter }
+  return { counter: state.counter };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -62,7 +62,7 @@ const mapDispatchToProps = (dispatch) => {
     reset: () => {
       dispatch(reset);
     },
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

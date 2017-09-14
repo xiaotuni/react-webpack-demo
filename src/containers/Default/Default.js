@@ -5,14 +5,6 @@ import { Utility, Navbar, DefHref } from 'components';
 const styles = require('./scss/Default.scss');
 
 export default class Default extends Component {
-  static propTypes = {
-    children: PropTypes.object,                                // 子项
-    location: PropTypes.object,                                           // location信息
-  };
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-    // history: PropTypes.object,
-  }
 
   constructor(props) {
     super(props);
@@ -20,9 +12,9 @@ export default class Default extends Component {
   }
 
   componentWillMount() {
- 
+    const a = 123;
   }
-   render() {
+  render() {
     return (
       <div className={styles.defaultCss}>
         <DefHref />
