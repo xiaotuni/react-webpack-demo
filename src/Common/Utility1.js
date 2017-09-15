@@ -77,12 +77,6 @@ export default class Utility {
       OnKeyboard: 'onXTNEvent_Keyboard',                                         // 获取焦点键盘弹起;失去焦点键盘消失
       OnSetTitle: 'onXTNEvent_OnSetTitle',                                       // 修改导航条的标题
     },
-    UserInfo: 'XTN_UserInfo',                                                    // 用户信息
-    SaveUserConfigInfo: 'XTN_SaveUserConfigInfo',                                // 保存用户获取的配置信息
-    SaveUrlPath: 'XTN_SaveUrlPath',                                              // url保存地址
-    OrderInfo: 'XTN_OrderInfo',                                                  // 订单信息
-    // ------------------------------------------------------------------------------------------------------
-
     /**
      * url 列表
      */
@@ -114,7 +108,8 @@ export default class Utility {
       Alert: 'XTNShowModelAlert',                                  // 弹出信息
       Confirm: 'XTNShowModelConfirm',                              // 确定--取消
     },
-
+    KeyHistory: 'XTN_KEY_HISTORY',
+    KeyGoBack: 'XTN_KEY_GOBACK'
   }
 
   /**
@@ -641,18 +636,17 @@ export default class Utility {
    */
   static toPage(url, params) {
     try {
-      const __history = this.getContent('___history___');
+      const __history = this.getContent(this.constItem.KeyHistory);
       if (this.isUndefined(url) || url === '' || this.isUndefined(__history)) {
         return;
       }
       this.$loadingHide();
 
       if (url === this.constItem.UrlItem.GoBack) {
+        this.setContent(this.constItem.KeyGoBack, true);
         __history.goBack();
         return;
       }
-      // const __param = this.convertToUrlParams(params);
-      // router.push('/' + url + (__param ? ('?' + __param) : ''));
       const __pathname = '/' + url;
       __history.push(__pathname, Object.assign(params || {}, { _timestamp: new Date().getTime() }));
     } catch (ex) {
@@ -1044,27 +1038,6 @@ export default class Utility {
       condition.pgCount = Utility.constItem.PageSize;
     }
     return condition;
-  }
-
-  /**
-   * 随机获取头像背景色
-   * @returns {string}
-   */
-  static $getHeadBackground() {
-    const colors = [
-      '#e47a13', // 正常字体颜色
-      '#9a9a9a', // 浅色的正常字体颜色
-      '#12A2D7', // 头部背景颜色
-      '#FD9393', // 人员标签背景
-      '#00DF5E', // 选中背景
-      '#6699CC', // 信用度字体颜色
-      '#FF6602', // 提示字体颜色
-      '#dcdcdc', // 最黑的字体
-      '#F9F9F9', // 浅色灰
-      '#6EBFEC'
-    ];
-    const num = Math.floor(6 * Math.random());
-    return colors[num];
   }
 
   /**

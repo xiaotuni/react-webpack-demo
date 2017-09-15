@@ -3,7 +3,7 @@ $top-hight: 40px;
 .com {
   background: #fff;
   position: fixed;
-  top: 0px; // $top-hight; //bottom:50px;  去掉是因为界面最下面老是会跳的效果，改为下面这种
+  top: $top-hight; //bottom:50px;  去掉是因为界面最下面老是会跳的效果，改为下面这种
   // padding-bottom: 50px;
   bottom: 0;
   left: 0;
@@ -40,9 +40,6 @@ $top-hight: 40px;
   opacity: 1;
   transition: opacity 1.5s ease-in;
 }
-
-
-
 
 /**************************返回***************************/
 

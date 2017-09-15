@@ -48,7 +48,7 @@ export default class UserInfo extends Component {
             }, (err) => {
               console.log(err);
             });
-          }}>请求用户信息</button>
+          }}>请求用户信息12</button>
         </div>
         <div>
           {errorMsg}
@@ -67,6 +67,3 @@ export default class UserInfo extends Component {
     );
   }
 }
-
-// export default connect((state) => ({ userInfo: state.userInfo }), { getUserInfo })(UserInfo);
-

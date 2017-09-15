@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import { Navbar } from 'components';
+import { Utility } from 'components';
 import pageComponent from 'containers';
 const { Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4 } = pageComponent;
 const routerCss = require('./router.scss');
@@ -22,8 +22,10 @@ const CreateComponent = (component) => () => (
 );
 
 const getTransitionsName = (isReturn, styles) => {
+  const __IsGoback = Utility.getContent(Utility.constItem.KeyGoBack);
+  console.log('__IsGoback', __IsGoback);
   const __tranName = {};
-  if (isReturn) {
+  if (!!__IsGoback) {
     __tranName.enter = styles.spEnterReturn;
     __tranName.enterActive = styles.spEnterActiveReturn;
     __tranName.leave = styles.spLeaveReturn;
@@ -47,6 +49,7 @@ const __timeout = 500;
 const getRouters = () => (
   <Router>
     <div className={routerCss.appContent}>
+      <Route path="/" component={CreateComponent(Home)} />
       <Route render={({ location }) => (
         <CSSTransitionGroup
           component="div"
@@ -55,7 +58,6 @@ const getRouters = () => (
           transitionAppearTimeout={__timeout}
           transitionEnterTimeout={__timeout}
           transitionLeaveTimeout={__timeout}>
-          <Route path="/" component={CreateComponent(Home)} />
           <Switch key={location.key} location={location}>
             <Route exact path="/" component={CreateComponent(Default)} />
             <Route path="/page1" component={CreateComponent(Page1)} />
