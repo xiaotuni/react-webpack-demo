@@ -7,7 +7,7 @@ const devConfig = {
   entry: {
     app: [
       'react-hot-loader/patch',
-      path.join(__dirname, 'src/index.js')
+      path.join(__dirname, '..', 'src/index.js')
     ]
   },
   output: {
@@ -27,15 +27,14 @@ const devConfig = {
             }
           },
           {
-            loader: 'postcss-loader', 
+            loader: 'postcss-loader',
             options: {
               sourceMap: true,
               config: {
                 path: 'postcss.config.js'
               }
             }
-          }
-          ,
+          },
           {
             loader: 'sass-loader', options: { sourceMap: true }
           }
@@ -45,8 +44,8 @@ const devConfig = {
   },
   devServer: {
     port: 11111,
-    contentBase: path.join(__dirname, './dist'),
-    historyApiFallback: true,
+    // contentBase: path.join(__dirname, '..', './react'),
+    historyApiFallback: { index: '/react/' },
     host: '0.0.0.0'
   },
 };
