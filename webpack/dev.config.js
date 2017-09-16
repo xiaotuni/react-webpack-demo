@@ -1,10 +1,6 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CommCfg = require('./wepback.common.config.js');
+const CommCfg = require('./common.config.js');
 
 const devConfig = {
   devtool: 'inline-source-map',
@@ -23,9 +19,9 @@ const devConfig = {
       {
         test: /\.scss$/,
         use: [
-          { loader: "style-loader" },
+          { loader: 'style-loader' },
           {
-            loader: "css-loader", options: {
+            loader: 'css-loader', options: {
               sourceMap: true, modules: true,
               localIdentName: '[local]_[hash:base64:5]'
             }
@@ -53,19 +49,13 @@ const devConfig = {
     historyApiFallback: true,
     host: '0.0.0.0'
   },
-  // plugins: [
-  //   new webpack.LoaderOptionsPlugin({
-  //     options: {
-  //       postcss: [
-  //         autoprefixer(),
-  //       ]
-  //     }
-  //   })
-  // ]
-}
+};
+
 const mergeCfg = merge({
   customizeArray(a, b, key) {
-    /*entry.app不合并，全替换*/
+    /**
+     * entry.app不合并，全替换
+     */
     if (key === 'entry.app') {
       return b;
     }

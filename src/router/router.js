@@ -5,6 +5,7 @@ import { Utility } from 'components';
 import pageComponent from 'containers';
 const { Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4 } = pageComponent;
 const routerCss = require('./router.scss');
+const AppCfg = require('../config');
 
 import Bundle from './Bundle';
 
@@ -47,7 +48,7 @@ const getTransitionsName = (isReturn, styles) => {
 const __timeout = 500;
 
 const getRouters = () => (
-  <Router basename="/react/">
+  <Router basename={AppCfg.app.BaseName}>
     <div className={routerCss.appContent}>
       <Route path="/" component={CreateComponent(Home)} />
       <Route render={({ location }) => (

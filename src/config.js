@@ -1,5 +1,6 @@
 module.exports = {
   app: {
-    BaseName: '/reactdemo/'
+    BaseName: '/react/',
+    BuildPath: '/dist/react'
   }
 };
