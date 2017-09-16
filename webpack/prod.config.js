@@ -45,7 +45,8 @@ const proCfg = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin([path.join(APP_PATH, AppCfg.app.BuildPath)]),
+    // new CleanWebpackPlugin([path.join(APP_PATH, AppCfg.app.BuildPath)]),
+    new CleanWebpackPlugin([path.join(APP_PATH, AppCfg.app.BuildPath)], { root: APP_PATH }),
     new UglifyJSPlugin(),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new ExtractTextPlugin({ filename: '[name].[contenthash:5].css', allChunks: true }),
