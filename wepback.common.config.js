@@ -8,10 +8,10 @@ const Config = {
     vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
   },
   output: {
-    path: path.join(__dirname, './dist/www'),
+    path: path.join(__dirname, './dist/react'),
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
-    publicPath: '/'
+    publicPath: '/react/'         // 这里必须和router里面写的那个basename要一样。要不能会出问题。
   },
   module: {
     rules: [

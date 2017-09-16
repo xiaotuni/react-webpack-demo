@@ -47,7 +47,7 @@ const getTransitionsName = (isReturn, styles) => {
 const __timeout = 500;
 
 const getRouters = () => (
-  <Router basename="/react">
+  <Router basename="/react/">
     <div className={routerCss.appContent}>
       <Route path="/" component={CreateComponent(Home)} />
       <Route render={({ location }) => (

@@ -11,7 +11,8 @@ const merge = require('webpack-merge');
 const CommCfg = require('./wepback.common.config.js');
 
 const proCfg = {
-  devtool: 'cheap-module-source-map',
+  // devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       { test: /\.css$/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }) },
@@ -44,12 +45,12 @@ const proCfg = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist/www']),
+    new CleanWebpackPlugin(['dist/react']),
     new UglifyJSPlugin(),
-    new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') } }),
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new ExtractTextPlugin({ filename: '[name].[contenthash:5].css', allChunks: true }),
   ],
-}
+};
 
 module.exports = merge(CommCfg, proCfg);
 

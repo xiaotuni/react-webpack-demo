@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as cActions from 'reducers/counter';
-import { Utility, Navbar } from 'components';
+import { Utility } from 'components';
 const comStyles = require('styles/Common.scss');
 
 @connect((state) => ({ counter: state.counter }), { ...cActions })
@@ -22,7 +22,6 @@ export default class Counter extends Component {
     const { increment, decrement, reset } = this.props;
     return (
       <div>
-        <Navbar Title="Counter" />
         <div className={comStyles.btns}>
           <button onClick={() => Utility.toPage('userinfo')}>go to userinfo</button>
           <button onClick={() => Utility.$goBack()}>go back</button>
