@@ -1,13 +1,15 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const CommCfg = require('./common.config.js');
+const APP_PATH = path.join(__dirname, '..');
+const AppCfg = require('../src/config');
 
 const devConfig = {
   devtool: 'inline-source-map',
   entry: {
     app: [
       'react-hot-loader/patch',
-      path.join(__dirname, '..', 'src/index.js')
+      path.join(APP_PATH, 'src/index.js')
     ]
   },
   output: {
@@ -45,7 +47,7 @@ const devConfig = {
   devServer: {
     port: 11111,
     // contentBase: path.join(__dirname, '..', './react'),
-    historyApiFallback: { index: '/react/' },
+    historyApiFallback: { index: AppCfg.app.BaseName }, // 解决进行非默认页面，刷新报404问题。
     host: '0.0.0.0'
   },
 };
