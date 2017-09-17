@@ -21,7 +21,7 @@ export default class Counter extends Component {
   render() {
     const { increment, decrement, reset } = this.props;
     return (
-      <div>
+      <div className={comStyles.navbar}>
         <div className={comStyles.btns}>
           <button onClick={() => Utility.toPage('userinfo')}>go to userinfo</button>
           <button onClick={() => Utility.$goBack()}>go back</button>
@@ -49,22 +49,3 @@ export default class Counter extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return { counter: state.counter };
-// };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     increment: () => {
-//       dispatch(increment);
-//     },
-//     decrement: () => {
-//       dispatch(decrement);
-//     },
-//     reset: () => {
-//       dispatch(reset);
-//     },
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Counter);

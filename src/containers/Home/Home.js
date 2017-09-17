@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Utility, Navbar } from 'components';
+import { Utility } from 'components';
 
 const styles = require('./scss/Home.scss');
 
@@ -27,14 +27,13 @@ export default class Home extends Component {
       const UrlTitle = Utility.constItem.UrlTitle;
       const __IsGoBackKey = Utility.constItem.KeyGoBack;
       this.context.router.history.listen((location, action) => {
-        console.log(action === 'POP');
         Utility.setContent(__IsGoBackKey, action === 'POP');
         console.log('location is', location, 'action is', action);
-        console.log('-----------home end---------------');
         const { pathname } = location;
         if (UrlTitle && UrlTitle[pathname]) {
           self.state.UrlTitle = UrlTitle[pathname];
-          self.__UpdateRender();
+          Utility.setContent('__URL_TITLE_INFO_', UrlTitle[pathname]);
+          // self.__UpdateRender();
         }
       });
     }
@@ -59,13 +58,17 @@ export default class Home extends Component {
     Utility.toPage('userinfo');
   }
   render() {
-    const { UrlTitle } = this.state;
-    const { Title } = UrlTitle || {};
+    // const { UrlTitle } = this.state;
+    // const { Title } = UrlTitle || {};
+    // const __Flag = 0;
 
     return (
       <div className={styles.homeCss}>
-        <Navbar Title={Title} />
+        {}
       </div>
     );
   }
 }
+// {
+//   __Flag === 2 && <Navbar Title={Title} />
+// }

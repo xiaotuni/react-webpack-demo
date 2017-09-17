@@ -32,7 +32,7 @@ export default class UserInfo extends Component {
     const styles = require('./ui.scss');
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
-      <div className="userInfoCss">
+      <div className={comStyles.navbar}>
         <div className={comStyles.btns}>
           <button onClick={() => Utility.toPage('page1')}>go to page1</button>
           <button onClick={() => Utility.$goBack()}>go back</button>

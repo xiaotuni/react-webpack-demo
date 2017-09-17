@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Utility } from 'components';
+import { Utility, Navbar } from 'components';
 import pageComponent from 'containers';
 const { Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4 } = pageComponent;
 const routerCss = require('./router.scss');
@@ -14,10 +14,24 @@ const Loading = () => {
   return <div>Loading...</div>;
 };
 
-const CreateComponent = (component) => () => (
+const getTitle = () => {
+  const a = Utility.getContent('__URL_TITLE_INFO_');
+  console.log(a);
+  if (a) {
+    return a.Title;
+  }
+  return '默认标题';
+};
+
+const CreateComponent = (component, name) => () => (
   <Bundle load={component}>
     {
-      (Component) => Component ? <Component /> : <Loading />
+      (Component) => Component ? <div>
+        {
+          name !== 'Home' && <Navbar Title={getTitle()} />
+        }
+        <Component />
+      </div> : <Loading />
     }
   </Bundle>
 );
@@ -50,7 +64,7 @@ const __timeout = 500;
 const getRouters = () => (
   <Router basename={AppCfg.app.BaseName}>
     <div className={routerCss.appContent}>
-      <Route path="/" component={CreateComponent(Home)} />
+      <Route path="/" component={CreateComponent(Home, 'Home')} />
       <Route render={({ location }) => (
         <CSSTransitionGroup
           component="div"

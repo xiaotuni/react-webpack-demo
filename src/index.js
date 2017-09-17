@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import BuildStore from './redux/store';
 import ApiClient from './helpers/ApiClient';
 import createHistory from 'history/createBrowserHistory';
-const history = createHistory({ basename: '/react' });
+const history = createHistory();
 const ApiClientStore = BuildStore(new ApiClient(), history);
 import getRouter from './router/router';
 import { Router } from 'react-router';

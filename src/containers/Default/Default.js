@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import {  DefHref } from 'components';
+import { DefHref } from 'components';
+const comStyles = require('styles/Common.scss');
 
 const styles = require('./scss/Default.scss');
 
@@ -15,7 +15,7 @@ export default class Default extends Component {
   }
   render() {
     return (
-      <div className={styles.defaultCss}>
+      <div className={comStyles.navbar + ' ' + styles.defaultCss}>
         <DefHref />
       </div>
     );

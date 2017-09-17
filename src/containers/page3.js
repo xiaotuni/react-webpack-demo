@@ -7,11 +7,13 @@ export default class Page3 extends Component {
     super(props);
 
     this.state = {};
+    console.log('----page3---', new Date().getTime());
   }
 
   render() {
+    console.log('----page3--111-', new Date().getTime());
     return (
-      <div>
+      <div className={comStyles.navbar}>
         <div className={comStyles.btns}>
           <button onClick={() => Utility.toPage('page4')}>go to page4</button>
           <button onClick={() => Utility.$goBack()}>go back</button>

@@ -10,7 +10,7 @@ export default class Page2 extends Component {
 
   render() {
     return (
-      <div>
+      <div className={comStyles.navbar}>
         <div className={comStyles.btns}>
           <button onClick={() => Utility.toPage('page3')}>go to page3</button>
           <button onClick={() => Utility.$goBack()}>go back</button>
