@@ -15,10 +15,9 @@ const Loading = () => {
 };
 
 const getTitle = () => {
-  const a = Utility.getContent('__URL_TITLE_INFO_');
-  console.log(a);
-  if (a) {
-    return a.Title;
+  const title = Utility.getContent('__URL_TITLE_INFO_');
+  if (title) {
+    return title.Title;
   }
   return '默认标题';
 };
@@ -38,7 +37,6 @@ const CreateComponent = (component, name) => () => (
 
 const getTransitionsName = (isReturn, styles) => {
   const __IsGoback = Utility.getContent(Utility.constItem.KeyGoBack);
-  console.log('__IsGoback', __IsGoback);
   const __tranName = {};
   if (!!__IsGoback) {
     __tranName.enter = styles.spEnterReturn;
@@ -55,8 +53,6 @@ const getTransitionsName = (isReturn, styles) => {
     __tranName.appear = styles.spAppear;
     __tranName.appearActive = styles.spAppearActive;
   }
-  console.log('--------__tranName-------');
-
   return __tranName;
 };
 const __timeout = 500;
@@ -65,25 +61,27 @@ const getRouters = () => (
   <Router basename={AppCfg.app.BaseName}>
     <div className={routerCss.appContent}>
       <Route path="/" component={CreateComponent(Home, 'Home')} />
-      <Route render={({ location }) => (
-        <CSSTransitionGroup
-          component="div"
-          transitionName={getTransitionsName(false, routerCss)}
-          transitionAppear
-          transitionAppearTimeout={__timeout}
-          transitionEnterTimeout={__timeout}
-          transitionLeaveTimeout={__timeout}>
-          <Switch key={location.key} location={location}>
-            <Route exact path="/" component={CreateComponent(Default)} />
-            <Route path="/page1" component={CreateComponent(Page1)} />
-            <Route path="/page2" component={CreateComponent(Page2)} />
-            <Route path="/page3" component={CreateComponent(Page3)} />
-            <Route path="/page4" component={CreateComponent(Page4)} />
-            <Route path="/counter" component={CreateComponent(Counter)} />
-            <Route path="/userinfo" component={CreateComponent(UserInfo)} />
-          </Switch>
-        </CSSTransitionGroup>
-      )} />
+      <Route
+        basename={AppCfg.app.BaseName}
+        render={({ location }) => (
+          <CSSTransitionGroup
+            component="div"
+            transitionName={getTransitionsName(false, routerCss)}
+            transitionAppear
+            transitionAppearTimeout={__timeout}
+            transitionEnterTimeout={__timeout}
+            transitionLeaveTimeout={__timeout}>
+            <Switch key={location.key} location={location}>
+              <Route exact path="/" component={CreateComponent(Default)} />
+              <Route path="/page1" component={CreateComponent(Page1)} />
+              <Route path="/page2" component={CreateComponent(Page2)} />
+              <Route path="/page3" component={CreateComponent(Page3)} />
+              <Route path="/page4" component={CreateComponent(Page4)} />
+              <Route path="/counter" component={CreateComponent(Counter)} />
+              <Route path="/userinfo" component={CreateComponent(UserInfo)} />
+            </Switch>
+          </CSSTransitionGroup>
+        )} />
     </div>
   </Router>
 );
