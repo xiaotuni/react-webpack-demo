@@ -30,9 +30,11 @@ export default class UserInfo extends Component {
 
   render() {
     const styles = require('./ui.scss');
+    const demoimg = require('./img/smiley_0.png');
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
       <div className={comStyles.navbar}>
+        <div style={{ background: 'url(' + demoimg + ')', height: '30px', width: '30px' }} />
         <div className={comStyles.btns}>
           <button onClick={() => Utility.toPage('page1')}>go to page1</button>
           <button onClick={() => Utility.$goBack()}>go back</button>

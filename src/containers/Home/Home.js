@@ -28,12 +28,10 @@ export default class Home extends Component {
       const __IsGoBackKey = Utility.constItem.KeyGoBack;
       this.context.router.history.listen((location, action) => {
         Utility.setContent(__IsGoBackKey, action === 'POP');
-        console.log('location is', location, 'action is', action);
         const { pathname } = location;
         if (UrlTitle && UrlTitle[pathname]) {
           self.state.UrlTitle = UrlTitle[pathname];
           Utility.setContent('__URL_TITLE_INFO_', UrlTitle[pathname]);
-          // self.__UpdateRender();
         }
       });
     }
