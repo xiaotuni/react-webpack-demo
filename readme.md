@@ -1,14 +1,14 @@
-# react-webpack-deom
+# react-webpack-demo
 
 
 ## 关于
-当前项目模版中使用到的技：
+当前项目模版中使用到的技术：
 
 * [React 15.6](https://github.com/facebook/react) 
-* [React Router](https://github.com/rackt/react-router)
+* [React Router4](https://github.com/rackt/react-router)
 * [React Hot Loader](https://github.com/gaearon/react-hot-loader) 模块热加载 
 * [Babel](http://babeljs.io) ES6 、ES7 语法转换
-* [Webpack](http://webpack.github.io) 打包工具
+* [Webpack3](http://webpack.github.io) 打包工具
 * [webpack Dev Server](http://github.com/webpack/webpack-dev-serverl)
 * [Redux](https://github.com/rackt/redux) 
 * [React Router Redux](https://github.com/reactjs/react-router-redux) Redux/React 路由绑定.
