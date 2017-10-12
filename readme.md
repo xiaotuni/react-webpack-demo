@@ -4,7 +4,7 @@
 ## 关于
 当前项目模版中使用到的技术：
 
-* [React 15.6](https://github.com/facebook/react) 
+* [React 16](https://github.com/facebook/react) 
 * [React Router4](https://github.com/rackt/react-router)
 * [React Hot Loader](https://github.com/gaearon/react-hot-loader) 模块热加载 
 * [Babel](http://babeljs.io) ES6 、ES7 语法转换
@@ -27,7 +27,7 @@ yarn install
 
 ## 运行开发环境
 ```base
-npm run start
+npm run dev
 ```
 起来在浏览器上输入：http://127.0.0.1:11111/react； /react这个是可以在config.js里进行配置，这个就是route basename。
 

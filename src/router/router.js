@@ -3,7 +3,9 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Utility, Navbar } from 'components';
 import pageComponent from 'containers';
-const { Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4 } = pageComponent;
+const {
+  Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4
+} = pageComponent;
 const routerCss = require('./router.scss');
 const AppCfg = require('../config');
 
@@ -29,8 +31,7 @@ const CreateComponent = (component, name) => () => (
         {
           name !== 'Home' && <Navbar Title={getTitle()} />
         }
-        <Component />
-      </div> : <Loading />
+        <Component /></div> : <Loading />
     }
   </Bundle>
 );

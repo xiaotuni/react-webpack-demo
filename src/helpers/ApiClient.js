@@ -3,7 +3,7 @@ import superagent from 'superagent';
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
-  const _ApiUrl = 'http://127.0.0.1:11111' + adjustedPath;
+  const _ApiUrl = 'http://127.0.0.1:11111/react/www' + adjustedPath;
   return _ApiUrl;
 }
 
@@ -19,8 +19,9 @@ export default class ApiClient {
   }
 
   constructor() {
+    const self = this;
     methods.forEach((method) =>
-      this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
+      self[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
         if (params) {
           request.query(params);

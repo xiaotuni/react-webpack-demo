@@ -24,7 +24,7 @@ export default class Home extends Component {
     if (!Utility.getContent(__key)) {
       Utility.setContent(__key, this.context.router.history);
       const self = this;
-      const UrlTitle = Utility.constItem.UrlTitle;
+      const { UrlTitle } = Utility.constItem;
       const __IsGoBackKey = Utility.constItem.KeyGoBack;
       this.context.router.history.listen((location, action) => {
         Utility.setContent(__IsGoBackKey, action === 'POP');

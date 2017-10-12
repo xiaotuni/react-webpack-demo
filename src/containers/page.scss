@@ -1,32 +1,45 @@
 .page1Css {
-  padding: 0px;
+  padding: 0;
 
   .info {
     line-height: 2;
     background-image: url('./img/0001.jpg');
     background-position: center;
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    height: 550px;
+    height: 600px;
     display: -webkit-box;
     -webkit-box-align: center;
     -webkit-box-pack: center;
 
-    >div {
+    > div {
       text-align: center;
       color: #e8b801;
       margin-top: -68%;
       font-weight: bolder;
+
       .a1 {
         font-size: 28px;
       }
 
       .a2 {
         font-size: 16px;
-        >span {
-          margin: 0px 5px;
+
+        > span {
+          margin: 0 5px;
         }
       }
     }
   }
+}
+
+.page4Css {
+  position: relative;
+  // .abc {
+  //   .btn {
+  //     padding: 10px;
+  //     border: 1px solid;
+  //     border-radius: 5px;
+  //   }
+  // }
 }

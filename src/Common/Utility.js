@@ -206,7 +206,7 @@ export default class Utility {
    * @memberOf Utility
    */
   static $androidVersion() {
-    const userAgent = navigator.userAgent;
+    const { userAgent } = navigator;
     // const index = userAgent.indexOf('Android');
     if (userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1) {
       const num = userAgent.substr(userAgent.indexOf('Android') + 8, 3);
@@ -676,7 +676,7 @@ export default class Utility {
         switch (mm) {
           case '%d':
             val = parseFloat(val);
-            if (isNaN(val)) {
+            if (!val) {
               val = 0;
             }
             break;
@@ -834,17 +834,22 @@ export default class Utility {
    * @param onCancel 点击取消事件  (可空)
    */
   static $confirm(Message, okButton, Title, onCancel, options) {
-    this.$emit(this.constItem.Events.ShowModel.OnConfirm,
-      { Title, Content: Message, okButton, onCancel, Options: options }
+    this.$emit(
+      this.constItem.Events.ShowModel.OnConfirm,
+      {
+        Title, Content: Message, okButton, onCancel, Options: options
+      }
     );
   }
 
   static $showDialog(Html, Title, okButton, onCancel, Options) {
-    this.$emit(this.constItem.Events.ShowModel.OnShowDialog,
+    this.$emit(
+      this.constItem.Events.ShowModel.OnShowDialog,
       {
         Title, Html, okButton, onCancel, isShowAction: true,
         Options: Object.assign(Options || {}, { IsHideCancel: true, IsHideOk: true })
-      });
+      }
+    );
   }
 
   static $showDialogHide(args) {
@@ -858,8 +863,11 @@ export default class Utility {
       _title = '提示信息';
       _okButton = Title;
     }
-    this.$emit(this.constItem.Events.ShowModel.OnShowDialog,
-      { Content: msg, Title: _title, okButton: _okButton, onCancel }
+    this.$emit(
+      this.constItem.Events.ShowModel.OnShowDialog,
+      {
+        Content: msg, Title: _title, okButton: _okButton, onCancel
+      }
     );
   }
   static $alert(msg, title) {
@@ -869,8 +877,11 @@ export default class Utility {
       _title = '提示信息';
       _okButton = title;
     }
-    this.$emit(this.constItem.Events.ShowModel.OnShowDialog,
-      { Content: msg, Title: _title, okButton: _okButton, Options: { IsHideCancel: true } }
+    this.$emit(
+      this.constItem.Events.ShowModel.OnShowDialog,
+      {
+        Content: msg, Title: _title, okButton: _okButton, Options: { IsHideCancel: true }
+      }
     );
   }
 
@@ -933,9 +944,13 @@ export default class Utility {
    * @param BgColor
    */
   static $navBarRightAddButton(Text, onClick, Color, BgColor) {
-    this.$emit(this.constItem.Events.OnEditNavBarRight,
+    this.$emit(
+      this.constItem.Events.OnEditNavBarRight,
       this.constItem.NavBarRightType.NBButton,
-      { Text, onClick, Color, BgColor });
+      {
+        Text, onClick, Color, BgColor
+      }
+    );
   }
 
   /**
@@ -944,65 +959,19 @@ export default class Utility {
    * @param onClick
    */
   static $navBarRightAddIcon(Icon, onClick) {
-    this.$emit(this.constItem.Events.OnEditNavBarRight,
+    this.$emit(
+      this.constItem.Events.OnEditNavBarRight,
       this.constItem.NavBarRightType.NBIcon,
-      { Icon, onClick });
+      { Icon, onClick }
+    );
   }
-
-  /**
-   * 添加图标
-   *
-   * @static
-   * @param {event} onClick 事件
-   *
-   * @memberOf Utility
-   */
-  static $iComMenuAddIcon(onClick) {
-    this.$emit(this.constItem.Events.OnEditNavBarRight,
-      this.constItem.NavBarRightType.NBIcon,
-      { Icon: this.constItem.Status.IComMenuIcon.Add, onClick });
-  }
-
-  /**
-   * 搜索图标
-   *
-   * @static
-   * @param {event} onClick 事件
-   *
-   * @memberOf Utility
-   */
-  static $iComMenuSearchIcon(onClick) {
-    this.$emit(this.constItem.Events.OnEditNavBarRight,
-      this.constItem.NavBarRightType.NBIcon,
-      { Icon: this.constItem.Status.IComMenuIcon.Search, onClick });
-  }
-
-  /**
-   * 设置导航条标题
-   *
-   * @static
-   * @param {any} title
-   * @param {any} onClick
-   *
-   * @memberOf Utility
-   */
-  static $iComSetTitle(title, onClick) {
-    this.$emit(this.constItem.Events.OnSetTitle, { title, onClick });
-  }
-
-  static $iComShowCloseBtn() {
-    this.$emit(this.constItem.IComAPI.WebViewShowCloseBtn);
-  }
-
   /**
    * 菜单-->添加菜单
    * [{Text:'菜单1',onClick:onClick},{Text:'菜单2',onClick:onClick},...]
    * @param MenuItem
    */
   static $navBarRightAddMenuItem(MenuItem) {
-    this.$emit(this.constItem.Events.OnEditNavBarRight,
-      this.constItem.NavBarRightType.NBMenu,
-      MenuItem);
+    this.$emit(this.constItem.Events.OnEditNavBarRight, this.constItem.NavBarRightType.NBMenu, MenuItem);
   }
 
   /**

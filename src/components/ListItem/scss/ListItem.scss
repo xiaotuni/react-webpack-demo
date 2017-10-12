@@ -1,0 +1,11 @@
+.listItemCss {
+  padding: 5px;
+
+  .row {
+    display: flex;
+
+    .name{
+      flex: 1;
+    }
+  }
+}
