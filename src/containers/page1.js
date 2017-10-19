@@ -17,7 +17,7 @@ export default class Page1 extends Component {
           <button onClick={() => Utility.toPage('page2')}>go to page2</button>
           <button onClick={() => Utility.$goBack()}>go back</button>
         </div>
-        哈哈这是Page1
+        c
 
       </div>
     );

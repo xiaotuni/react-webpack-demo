@@ -1,4 +1,3 @@
-
 export default class Utility {
   static __Instance;
 
@@ -17,7 +16,6 @@ export default class Utility {
     }
     return this.__Instance;
   }
-
 
   /**
    * 常量
@@ -89,6 +87,7 @@ export default class Utility {
       Page4: 'page4',                                                  // 首页-->商品列表
       Counter: 'counter',                                                  // 首页-->商品列表
       UserInfo: 'userinfo',                                                  // 首页-->商品列表
+      Es6: 'es6',                                                  // 首页-->商品列表
     },
     UrlTitle: {
       '/': { Title: '默认页面', Index: 0 },
@@ -98,6 +97,7 @@ export default class Utility {
       '/page4': { Title: 'page4', Index: 0 },
       '/counter': { Title: '计数', Index: 0 },
       '/userinfo': { Title: '用户信息', Index: 0 },
+      '/es6': { Title: 'Es6', Index: 0 },
     },
     /**
      * 显示模式
@@ -207,7 +207,6 @@ export default class Utility {
    */
   static $androidVersion() {
     const { userAgent } = navigator;
-    // const index = userAgent.indexOf('Android');
     if (userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1) {
       const num = userAgent.substr(userAgent.indexOf('Android') + 8, 3);
       return { type: 'Android', version: num };
@@ -278,7 +277,6 @@ export default class Utility {
    * @private
    */
   static printLog(args) {
-    //  return;
     try {
       let __callmethod = '';
       try {
@@ -451,12 +449,6 @@ export default class Utility {
     }
     return false;
   }
-
-  /**
-   * 判断是否未为空
-   * @param obj 判断对象
-   * @returns {boolean} true:成功，false:失败。
-   */
 
   /**
    * 判断是否未定义
@@ -801,19 +793,6 @@ export default class Utility {
   }
 
   /**
-   * 判断用户是否登录了
-   * @returns {boolean} true: 登录了，false: 未登录。
-   * @constructor
-   */
-  static isLogin() {
-    const __UserInfo = this.getContent(this.constItem.API.UserInfo);
-    if (__UserInfo) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
    * 弹出提示信息
    * @param Content 弹出显示内容
    * @param Title  弹出显示的标题，可以不填写，默认为当前导航条里的标题
@@ -870,6 +849,7 @@ export default class Utility {
       }
     );
   }
+
   static $alert(msg, title) {
     let _title = title;
     let _okButton;
@@ -898,7 +878,6 @@ export default class Utility {
   static $loadingHide() {
     this.$emit(this.constItem.Events.ShowModel.OnLoadingHide);
   }
-
 
   /**
    * 去空格
@@ -965,6 +944,7 @@ export default class Utility {
       { Icon, onClick }
     );
   }
+
   /**
    * 菜单-->添加菜单
    * [{Text:'菜单1',onClick:onClick},{Text:'菜单2',onClick:onClick},...]
@@ -972,41 +952,6 @@ export default class Utility {
    */
   static $navBarRightAddMenuItem(MenuItem) {
     this.$emit(this.constItem.Events.OnEditNavBarRight, this.constItem.NavBarRightType.NBMenu, MenuItem);
-  }
-
-  /**
-   * 页面跳转到需求类型
-   *
-   * @static
-   *
-   * @memberOf Utility
-   */
-  static $iComMenuToDemandTypePage() {
-    this.$iComMenuAddIcon(() => {
-      this.toPage(this.constItem.UrlItem.DemandTypeNew, {});
-    });
-  }
-
-  static $iComMenuToDemandTypeTask() {
-    this.$iComMenuAddIcon(() => {
-      this.toPage(this.constItem.UrlItem.PublishDemandNew, {});
-    });
-  }
-  /**
-   * 条件设置，主要翻页用的
-   * @param row
-   * @returns {{}}
-   */
-  static $conditionSetPageIndexAndPageSize(row) {
-    const condition = {};
-    Object.assign(condition, row || {});
-    if (!condition.pgIndex) {
-      condition.pgIndex = 0;
-    }
-    if (!condition.pgCount) {
-      condition.pgCount = Utility.constItem.PageSize;
-    }
-    return condition;
   }
 
   /**

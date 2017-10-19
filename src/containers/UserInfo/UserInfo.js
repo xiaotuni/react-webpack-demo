@@ -34,11 +34,11 @@ export default class UserInfo extends Component {
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
     return (
       <div className={comStyles.navbar}>
-        <div style={{ background: 'url(' + demoimg + ')', height: '30px', width: '30px' }} />
         <div className={comStyles.btns}>
           <button onClick={() => Utility.toPage('page1')}>go to page1</button>
           <button onClick={() => Utility.$goBack()}>go back</button>
         </div>
+        <div style={{ background: 'url(' + demoimg + ')', height: '30px', width: '30px' }} />
         <div className={styles.a} onClick={this.__HandlerGoBack}>
           哈哈!!看看了
         </div>

@@ -1,0 +1,131 @@
+$top-hight:0;// 40px;
+
+.com {
+  background: #fff;
+  position: fixed;
+  top: $top-hight; //bottom:50px;  去掉是因为界面最下面老是会跳的效果，改为下面这种
+  // padding-bottom: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.__spEnter {
+  @extend .com;
+  transform: translate3d(100%, 0, 0);
+}
+
+.__spEnterActive {
+  @extend .com;
+  transform: translate3d(0, 0, 0);
+  transition: all ease-out 500ms;
+}
+
+.__spLeave {
+  @extend .com;
+  transform: translate3d(0, 0, 0);
+}
+
+.__spLeaveActive {
+  @extend .com;
+  transform: translate3d(-100%, 0, 0);
+  transition: all ease-out 500ms;
+}
+
+.__spAppear {
+  opacity: .01;
+}
+
+.__spAppearActive {
+  opacity: 1;
+  transition: opacity 1.5s ease-in;
+}
+
+/**************************返回***************************/
+
+.__spEnterReturn {
+  @extend .com;
+  transform: translate3d(-100%, 0, 0);
+}
+
+.__spEnterActiveReturn {
+  @extend .com;
+  transform: translate3d(0, 0, 0);
+  transition: all ease-out 500ms;
+}
+
+.__spLeaveReturn {
+  @extend .com;
+  transform: translate3d(0, 0, 0);
+}
+
+.__spLeaveActiveReturn {
+  @extend .com;
+  transform: translate3d(100%, 0, 0);
+  transition: all ease-out 500ms;
+}
+
+.__spAppearReturn {
+  opacity: .01;
+  transition: opacity 1.5s ease-in;
+}
+
+.__spAppearActiveReturn {
+  opacity: 1;
+  transition: opacity 1.5s ease-in;
+}
+
+.appContent {
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  top: $top-hight;
+
+  .spEnter {
+    @extend .__spEnter;
+  }
+
+  .spEnterActive {
+    @extend .__spEnterActive;
+  }
+
+  .spLeave {
+    @extend .__spLeave;
+  }
+
+  .spLeaveActive {
+    @extend .__spLeaveActive;
+  }
+
+  .spAppear {
+    @extend .__spAppear;
+  }
+
+  .spAppearActive {
+    @extend .__spAppearActive;
+  }
+  /**************************返回***************************/
+  .spEnterReturn {
+    @extend .__spEnterReturn;
+  }
+
+  .spEnterActiveReturn {
+    @extend .__spEnterActiveReturn;
+  }
+
+  .spLeaveReturn {
+    @extend .__spLeaveReturn;
+  }
+
+  .spLeaveActiveReturn {
+    @extend .__spLeaveActiveReturn;
+  }
+
+  .spAppearReturn {
+    @extend .__spAppearReturn;
+  }
+
+  .spAppearActiveReturn {
+    @extend .__spAppearActiveReturn;
+  }
+}
