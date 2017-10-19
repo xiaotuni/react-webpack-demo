@@ -3,7 +3,8 @@ import superagent from 'superagent';
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
-  const _ApiUrl = 'http://127.0.0.1:11111/react/www' + adjustedPath;
+  // const _ApiUrl = 'http://127.0.0.1:11111/react/www' + adjustedPath;
+  const _ApiUrl = 'https://127.0.0.1:30081/webapi' + adjustedPath;
   return _ApiUrl;
 }
 
@@ -16,6 +17,7 @@ export default class ApiClient {
 
     },
     UserInfo: 'api/user.json',
+    Users: 'userinfo/users',
   }
 
   constructor() {
@@ -29,6 +31,7 @@ export default class ApiClient {
         if (data) {
           request.send(data);
         }
+        request.header.token = 'xtn_21232f297a57a5a743894a0e4a801fc3_c3284d0f94606de1fd2af172aba15bf3';
 
         /**
          * 错误处理及提示
