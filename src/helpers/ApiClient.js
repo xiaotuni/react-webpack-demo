@@ -18,6 +18,8 @@ export default class ApiClient {
     },
     UserInfo: 'api/user.json',
     Users: 'userinfo/users',
+    MapPlacelist: 'map/placelist',
+    Demo: 'demo',
   }
 
   constructor() {

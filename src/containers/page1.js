@@ -6,10 +6,16 @@ import * as CommonActions from 'reducers/reduxCommon';
 const comStyles = require('styles/Common.scss');
 const styles = require('./page.scss');
 
-@connect((state) => ({ UserList: state.Common.UserList }), { ...CommonActions })
+@connect((state) => ({
+  UserList: state.Common.UserList,
+  Demo: state.Common.Demo,
+  MapPlacelist: state.Common.MapPlacelist,
+}), { ...CommonActions })
 export default class Page1 extends Component {
   static propTypes = {
     UserList: PropTypes.any,
+    Demo: PropTypes.any,
+    MapPlacelist: PropTypes.any,
     onApiGet: PropTypes.func,
   }
 
@@ -23,11 +29,34 @@ export default class Page1 extends Component {
     if (!onApiGet) {
       return;
     }
-    onApiGet('UserList', ApiInfo.Users, {}).then((data) => {
-      console.log(data);
-    }).catch((er) => {
-      console.log(er);
-    });
+    // onApiGet('UserList', ApiInfo.Users, {}).then((data) => {
+    //   console.log(data);
+    // }).catch((er) => {
+    //   console.log(er);
+    // });
+
+    function* testa() {
+      console.log('---------1----------');
+      yield onApiGet('UserList', ApiInfo.Users, {});
+      console.log('---------2----------');
+      yield onApiGet('MapPlacelist', ApiInfo.MapPlacelist, {});
+      console.log('---------3----------');
+      yield onApiGet('Demo', ApiInfo.Demo, {});
+      console.log('---------4----------');
+      yield 'ok';
+    }
+    const gen = testa();
+
+    let result = gen.next();
+    console.log(result);
+    result = gen.next();
+    console.log(result);
+    result = gen.next();
+    console.log(result);
+    result = gen.next();
+    console.log(result);
+    result = gen.next();
+    console.log(result);
   }
 
 
