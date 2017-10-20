@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Utility, Navbar } from 'components';
 import pageComponent from 'containers';
 const {
-  App, Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4
+  App, Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4, Es6,
 } = pageComponent;
 const AppCfg = require('../config');
 
@@ -46,6 +46,7 @@ const getRouters = () => (
       <Route path="/page4" component={CreateComponent(Page4)} />
       <Route path="/counter" component={CreateComponent(Counter)} />
       <Route path="/userinfo" component={CreateComponent(UserInfo)} />
+      <Route path="/es6" component={CreateComponent(Es6)} />
     </App>
   </Router>
 );

@@ -11,10 +11,50 @@ export default class Es6 extends Component {
 
   componentWillMount() {
     //  this.testDemo();
+    this.testClassDemo();
   }
   printLine(args) {
-    console.log('-------------' + (args || '') + '-------------------');
+    console.log('-------------------' + (args || '') + '-------------------');
   }
+
+  testClassDemo() {
+    class Point {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      toString() {
+        const value = 'x:' + this.x + ' y:' + this.y;
+        return value;
+      }
+    }
+    Object.assign(Point.prototype, {
+      sayHello() {
+        console.log('say hello');
+      }
+    });
+    const p = new Point(1, 2, 'bbc');
+    this.printLine(p.toString());
+    p.sayHello();
+    const a = p.__proto__.hasOwnProperty('toString');
+    console.log(a);
+
+    class GetSetClass {
+      get(name) {
+        return this[name];
+      }
+      set(name, value = '默认值') {
+        this[name] = value;
+      }
+    }
+
+    const gs = new GetSetClass();
+    gs.set('name01', '张三');
+    gs.set('name00');
+    console.log('--------', gs.get('name00'));
+    console.log('--------', gs.get('name01'));
+  }
+
   testDemo() {
     const arr = [1, 2, 3];
     const [a, b, c] = arr;
