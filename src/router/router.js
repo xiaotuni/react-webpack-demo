@@ -1,5 +1,4 @@
 import React from 'react';
-// import { CSSTransitionGroup } from 'react-transition-group';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Utility, Navbar } from 'components';
 import pageComponent from 'containers';

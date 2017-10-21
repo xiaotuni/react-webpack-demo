@@ -1,19 +1,33 @@
 {
   "name": "react-webpack-demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Example of webapp using react redux and hot reloading",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack/prod.config.js",
     "dev": "webpack-dev-server --config webpack/dev.config.js  --color --progress --hot"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaotuni/react-webpack-demo"
+  },
+  "homepage": "https://github.com/xiaotuni/react-webpack-demo",
+  "keywords": [
+    "babel",
+    "bundle-loader",
+    "eslint",
+    "hot reloading",
+    "react",
+    "react-router-dom",
+    "react-hot-reloader",
+    "redux",
+    "webpack"
+  ],
+  "author": "xiaotuni <xiaotuni@gmail.com> (http://github.com/xiaotuni)",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^7.1.5",
-    "axios": "^0.16.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
