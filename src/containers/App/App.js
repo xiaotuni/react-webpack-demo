@@ -79,7 +79,6 @@ export default class App extends Component {
     const { route } = router || {};
     const { location } = route || {};
     const { key } = location || {};
-    console.log('1', location, key);
 
     return (
       <div className={styles.appContent}>

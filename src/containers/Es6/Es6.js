@@ -11,10 +11,105 @@ export default class Es6 extends Component {
 
   componentWillMount() {
     //  this.testDemo();
-    this.testClassDemo();
+    // this.testClassDemo();
+    try {
+      this.testObjectDefineProperty();
+      this.testGenerator();
+    } catch (ex) {
+      console.log(ex);
+    }
   }
   printLine(args) {
     console.log('-------------------' + (args || '') + '-------------------');
+  }
+  testGenerator() {
+    function* tempOther() {
+      yield 11;
+      yield 12;
+      yield 13;
+    }
+
+    function* temp() {
+      yield 1;
+      yield 2;
+      yield* tempOther();
+      yield 4;
+      return '最后啦';
+    }
+    const list = temp();
+    for (const a of list) {
+      console.log(a);
+    }
+
+    class Tree {
+      constructor(value, children) {
+        this.value = value;
+        this.children = children;
+      }
+
+      * print() {
+        yield this.value;
+        for (const child of this.children) {
+          yield* child.print();
+        }
+      }
+    }
+    this.printLine();
+    const __tree = new Tree(0, [
+      new Tree(11, [new Tree(111, [])]),
+      new Tree(22, [new Tree(222, [])]),
+      new Tree(33, [new Tree(333, [])]),
+    ]);
+
+    for (const tree of __tree.print()) {
+      console.log(tree);
+    }
+    this.printLine();
+    const isEves = (x) => x % 2 === 0;
+    console.log(isEves(10));
+    const notEves = (fn) => (...args) => {
+      console.log('--------------b----------');
+      return !fn(args);
+    };
+
+    console.log(notEves(isEves)(10));
+
+    this.printLine();
+  }
+
+  testObjectDefineProperty() {
+    const obj = {};
+    Object.defineProperty(obj, 'field', {
+      value: 1234,
+      writable: true,
+      enumerable: true, // 可以枚举。
+    });
+    Object.defineProperty(obj, 'field2', {
+      enumerable: true, // 可以枚举。
+      get() {
+        return this._field2;
+      },
+      set(newValue) {
+        if (this._field2 !== newValue) {
+          this._field2 = newValue;
+        }
+      }
+    });
+    obj.field = 111;
+    obj.field2 = '哈哈';
+    obj._field2 = 'private field';
+    console.log(Object.keys(obj));
+    console.log(obj);
+    this.printLine();
+
+    const [a, b, c, d, ...e] = [[1, 2], [3, 4], [5, 6], [7, 8], 11, 22, 33, 44, 55];
+    // const [a, b, c, d, e] = [1, 2, 3, 4, 5];
+    console.log(a, b, c, d, e);
+    const { field: xxField, field } = obj;
+    console.log(xxField);
+    console.log(field);
+    const [aa, bb, ...cc] = '哈啦是不是的呀';
+    console.log(aa, bb, cc);
   }
 
   testClassDemo() {
