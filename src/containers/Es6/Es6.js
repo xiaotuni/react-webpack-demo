@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { ApiInfo } from 'components';
+import * as CommonActions from 'reducers/reduxCommon';
 
 const comStyles = require('styles/Common.scss');
 const styles = require('./scss/Es6.scss');
 
+@connect((state) => ({
+  UserList: state.Common.UserList,
+  Demo: state.Common.Demo,
+  MapPlacelist: state.Common.MapPlacelist,
+}), { ...CommonActions })
 export default class Es6 extends Component {
+  static propTypes = {
+    Title: PropTypes.string,
+    UserList: PropTypes.any,
+    onApiGet: PropTypes.func,
+  }
   constructor(props) {
     super(props);
     this.state = {};
@@ -19,9 +33,30 @@ export default class Es6 extends Component {
       console.log(ex);
     }
   }
+
+  componentDidMount() {
+    this.state.isMount = true;
+    try {
+      this.testAsyncAwait();
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
   printLine(args) {
     console.log('-------------------' + (args || '') + '-------------------');
   }
+
+  async testAsyncAwait() {
+    const { onApiGet } = this.props;
+    const result = await onApiGet('UserList', ApiInfo.Users, {});
+    this.printLine('~~~');
+    console.log(result);
+    const { UserList } = this.props;
+    this.printLine('+++++++++++++++++');
+    console.log(UserList);
+  }
+
   testGenerator() {
     function* tempOther() {
       yield 11;
@@ -230,8 +265,14 @@ export default class Es6 extends Component {
   }
 
   render() {
+    console.log('------------------render----------');
+    console.log(this.props.UserList);
+    console.log('current date:', new Date());
     return (
       <div className={comStyles.navbar + ' ' + styles.page1Css}>
+        <div onClick={() => {
+          this.testAsyncAwait();
+        }}>调用API</div>
         <div>aecdqqaa</div>
       </div>
     );
