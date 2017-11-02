@@ -5,6 +5,7 @@ import { Utility, Navbar } from 'components';
 class Bundle extends Component {
   static propTypes = {
     load: PropTypes.any,
+    isProduction: PropTypes.bool,
     children: PropTypes.any,
   }
   constructor(props) {
@@ -33,13 +34,17 @@ class Bundle extends Component {
   }
 
   load(props) {
-    this.setState({ mod: null });
-    props.load((mod) => {
-      // handle both es import and cjs
-      this.setState({ mod: mod.default ? mod.default : mod });
-    });
+    const { load, isProduction } = props;
+    if (!!isProduction) {
+      this.setState({ mod: null });
+      props.load((mod) => {
+        // handle both es import and cjs
+        this.setState({ mod: mod.default ? mod.default : mod });
+      });
+    } else {
+      this.setState({ mod: load });
+    }
   }
-
 
   render() {
     return (

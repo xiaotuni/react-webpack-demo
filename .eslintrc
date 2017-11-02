@@ -10,12 +10,6 @@
     "import/resolve": {
       "moduleDirectory": ["node_modules", "src"]
     },
-    // "react": {
-    //   "createClass": "createReactClass", // Regex for Component Factory to use, default to "createReactClass"
-    //   "pragma": "React",  // Pragma to use, default to "React"
-    //   "version": "15.0", // React version, default to the latest React stable release
-    //   "flowVersion": "0.53" // Flow version
-    // },
     "propWrapperFunctions": [ "forbidExtraProps" ] // The names of any functions used to wrap the propTypes object, such as `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
   },
   "parser": "babel-eslint",
@@ -29,6 +23,7 @@
     "import/no-extraneous-dependencies": 0,
     "import/extensions":0,
     "import/first":0,
+    "import/no-dynamic-require":0,
     "react/require-default-props":0,
     "react/no-unused-prop-types":0,
     "class-methods-use-this":0,

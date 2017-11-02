@@ -1,0 +1,52 @@
+.page1Css {
+  padding: 0;
+
+  .info {
+    line-height: 2;
+    // background-image: url('./img/0001.jpg');
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 600px;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    > div {
+      text-align: center;
+      color: #e8b801;
+      margin-top: -68%;
+      font-weight: bolder;
+
+      .a1 {
+        font-size: 28px;
+      }
+
+      .a2 {
+        font-size: 16px;
+
+        > span {
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+
+  .row {
+    display: flex;
+    margin-bottom: 5px;
+    border: 1px solid #f0f0f0;
+    padding: 5px 10px;
+  }
+}
+
+.page4Css {
+  position: relative;
+  // .abc {
+  //   .btn {
+  //     padding: 10px;
+  //     border: 1px solid;
+  //     border-radius: 5px;
+  //   }
+  // }
+}

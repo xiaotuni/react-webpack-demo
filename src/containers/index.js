@@ -1,23 +1,28 @@
-import App from './App/App';
-import Default from 'bundle-loader?lazy&name=default!containers/Default/Default';
-import Page1 from 'bundle-loader?lazy&name=page1!containers/page1';
-import Page2 from 'bundle-loader?lazy&name=page2!containers/page2';
-import Page3 from 'bundle-loader?lazy&name=page3!containers/page3';
-import Page4 from 'bundle-loader?lazy&name=page4!containers/page4';
-import Home from 'bundle-loader?lazy&name=home!containers/Home/Home';
-import Counter from 'bundle-loader?lazy&name=counter!containers/Counter/Counter';
-import UserInfo from 'bundle-loader?lazy&name=userInfo!containers/UserInfo/UserInfo';
-import Es6 from 'bundle-loader?lazy&name=es6!containers/Es6/Es6';
-// import Default from './Default/Default';
-// import Page1 from './page1';
-// import Page2 from './page2';
-// import Page3 from './page3';
-// import Page4 from './page4';
-// import Home from './Home/Home';
-// import Counter from './Counter/Counter';
-// import UserInfo from './UserInfo/UserInfo';
-// import Es6 from './Es6/Es6';
+import cfg from '../config';
+const { isProduction } = cfg;
 
-export default {
-  App, Default, Page1, Page2, Page3, Page4, Home, Counter, UserInfo, Es6
+import App from './App/App';
+import Default from './Default/Default';
+import page1 from './page1/page1';
+import page2 from './page2/page2';
+import page3 from './page3/page3';
+import page4 from './page4/page4';
+import Home from './Home/Home';
+import Counter from './Counter/Counter';
+import UserInfo from './UserInfo/UserInfo';
+import Es6 from './Es6/Es6';
+
+const obj = {
+  Default, page1, page2, page3, page4, Home, UserInfo, Es6, Counter
 };
+if (!!isProduction) {
+  // 生产环境下使用懒加载方法
+  Object.keys(obj).forEach((key) => {
+    try {
+      obj[key] = require('bundle-loader?lazy&name=[name]!containers/' + key + '/' + key);
+    } catch (ex) {
+      console.log(ex);
+    }
+  });
+}
+export default Object.assign(obj, { App });

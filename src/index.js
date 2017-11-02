@@ -10,10 +10,9 @@ const ApiClientStore = BuildStore(new ApiClient(), history);
 import getRouter from './router/router';
 import { Router } from 'react-router';
 
-
 function renderWithHotReload(RootElement) {
   ReactDOM.render(
-    <AppContainer>
+    <AppContainer warnings={false}>
       <Provider store={ApiClientStore} key="provider">
         <Router history={history}>
           {RootElement}
@@ -23,7 +22,6 @@ function renderWithHotReload(RootElement) {
     document.getElementById('app')
   );
 }
-
 
 /**
  * 初始化
