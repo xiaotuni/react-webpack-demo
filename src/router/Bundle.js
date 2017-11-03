@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+// import { connect } from 'react-redux';
 import { Utility, Navbar } from 'components';
 
 class Bundle extends Component {
@@ -7,6 +8,7 @@ class Bundle extends Component {
     load: PropTypes.any,
     isProduction: PropTypes.bool,
     children: PropTypes.any,
+    location: PropTypes.any,
   }
   constructor(props) {
     super(props);

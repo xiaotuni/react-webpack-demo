@@ -17,7 +17,7 @@ export default class Default extends Component {
     return (
       <div className={comStyles.navbar + ' ' + styles.defaultCss}>
         <DefHref />
-        哈哈123cc
+        哈哈123
       </div>
     );
   }
