@@ -4,7 +4,7 @@ const methods = ['get', 'post', 'put', 'patch', 'del'];
 function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
   // const _ApiUrl = 'http://127.0.0.1:11111/react/www' + adjustedPath;
-  const _ApiUrl = 'https://127.0.0.1:30081/webapi' + adjustedPath;
+  const _ApiUrl = 'http://127.0.0.1:30081/webapi' + adjustedPath;
   return _ApiUrl;
 }
 
@@ -20,6 +20,10 @@ export default class ApiClient {
     Users: 'userinfo/users',
     MapPlacelist: 'map/placelist',
     Demo: 'demo',
+    Redis: {
+      GET: '/redis/get',
+      POST: '/redis/post',
+    },
   }
 
   constructor() {
