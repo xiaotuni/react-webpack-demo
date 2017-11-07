@@ -39,6 +39,18 @@ export default class Redis extends Component {
     console.log(result);
   }
 
+  async inputOnClick() {
+    const { txtRedis_Key, txtRedis_Value } = this.refs;
+    const key = txtRedis_Key.value;
+    const value = txtRedis_Value.value;
+    const { onApiPost } = this.props;
+    const data = { key, value };
+    this.refs.txtRedisKey.value = key;
+    const result = await onApiPost('RedisPost', ApiInfo.Redis.POST, { data });
+    console.log(result);
+    this.onClickGetRedis();
+  }
+
   render() {
     console.log('-----------------', new Date().getTime());
     const { RedisGet } = this.props;
@@ -50,6 +62,20 @@ export default class Redis extends Component {
           <div onClick={this.onClickGetRedis.bind(this)}>get redis</div>
         </div>
         {username + ' ' + password}
+        <div className={styles.addInfo}>
+          <h2>add redies info</h2>
+          <div className={styles.row}>
+            <div className={styles.tag}> Redis Key</div>
+            <input type="text" ref="txtRedis_Key" />
+          </div>
+          <div className={styles.row}>
+            <div className={styles.tag}>Redis Value</div>
+            <textarea ref="txtRedis_Value" />
+          </div>
+          <div className={styles.submit}>
+            <input type="submit" value="submit" onClick={this.inputOnClick.bind(this)} />
+          </div>
+        </div>
       </div>
     );
   }
