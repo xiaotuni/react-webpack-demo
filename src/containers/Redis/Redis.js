@@ -39,6 +39,38 @@ export default class Redis extends Component {
     console.log(result);
   }
 
+  async onClickLPush() {
+    const { txtRedisKey } = this.refs;
+    const key = txtRedisKey.value;
+    const { onApiPost } = this.props;
+    const data = { pValue: key };
+    const result = await onApiPost('RedisLPUSH', ApiInfo.Redis.LPUSH, { data });
+    console.log(result);
+    txtRedisKey.value = new Date().getTime();
+  }
+
+  async onClickLPop() {
+    const { onApiGet } = this.props;
+    const result = await onApiGet('RedisLPOP', ApiInfo.Redis.LPOP, {});
+    console.log(result);
+  }
+
+  async onClickRPush() {
+    const { txtRedisKey } = this.refs;
+    const key = txtRedisKey.value;
+    const { onApiPost } = this.props;
+    const data = { pValue: key };
+    const result = await onApiPost('RedisRPUSH', ApiInfo.Redis.RPUSH, { data });
+    console.log(result);
+    txtRedisKey.value = new Date().getTime();
+  }
+
+  async onClickRPop() {
+    const { onApiGet } = this.props;
+    const result = await onApiGet('RedisRPOP', ApiInfo.Redis.RPOP, {});
+    console.log(result);
+  }
+
   async inputOnClick() {
     const { txtRedis_Key, txtRedis_Value } = this.refs;
     const key = txtRedis_Key.value;
@@ -51,15 +83,20 @@ export default class Redis extends Component {
     this.onClickGetRedis();
   }
 
+
   render() {
     console.log('-----------------', new Date().getTime());
     const { RedisGet } = this.props;
     const { username, password } = RedisGet || {};
     return (
       <div className={comStyles.navbar + ' ' + styles.redisCss}>
-        <input type="text" ref={'txtRedisKey'} />
+        <input className={styles.inputInfo} type="text" ref={'txtRedisKey'} />
         <div className={styles.btns}>
           <div onClick={this.onClickGetRedis.bind(this)}>get redis</div>
+          <div onClick={this.onClickLPush.bind(this)}>LPUSH</div>
+          <div onClick={this.onClickLPop.bind(this)}>LPOP</div>
+          <div onClick={this.onClickRPush.bind(this)}>RPUSH</div>
+          <div onClick={this.onClickRPop.bind(this)}>RPOP</div>
         </div>
         {username + ' ' + password}
         <div className={styles.addInfo}>

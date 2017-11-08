@@ -23,6 +23,10 @@ export default class ApiClient {
     Redis: {
       GET: '/redis/get',
       POST: '/redis/post',
+      LPUSH: '/redis/lpush',
+      LPOP: '/redis/lpop',
+      RPUSH: '/redis/rpush',
+      RPOP: '/redis/rpop',
     },
   }
 

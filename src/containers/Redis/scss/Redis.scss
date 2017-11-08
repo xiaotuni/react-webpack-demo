@@ -1,8 +1,14 @@
 .redisCss {
   padding: 0px;
   position: relative;
+  .inputInfo {
+    padding: 5px 10px;
+    width: 100%;
+    margin: 5px 0px;
+  }
   .btns {
     display: flex;
+    flex-wrap: wrap;
     div {
       padding: 10px;
       border-radius: 5px;
