@@ -12,8 +12,10 @@ import Counter from './Counter/Counter';
 import UserInfo from './UserInfo/UserInfo';
 import Es6 from './Es6/Es6';
 import Redis from './Redis/Redis';
+import Createjs from './Createjs/Createjs';
 
 const obj = {
+  Createjs,
   Default, page1, page2, page3, page4, Home, UserInfo, Es6, Counter, Redis
 };
 if (!!isProduction) {

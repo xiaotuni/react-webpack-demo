@@ -71,6 +71,18 @@ export default class Redis extends Component {
     console.log(result);
   }
 
+  async onClickLPUSHRPOP() {
+    const { onApiGet } = this.props;
+    const result = await onApiGet('RedisLPUSHRPOP', ApiInfo.Redis.LPUSHRPOP, {});
+    console.log(result);
+  }
+
+  async onClickbrpoplpush() {
+    const { onApiPost } = this.props;
+    const result = await onApiPost('Redis_brpoplpush', ApiInfo.Redis.brpoplpush, {});
+    console.log(result);
+  }
+
   async inputOnClick() {
     const { txtRedis_Key, txtRedis_Value } = this.refs;
     const key = txtRedis_Key.value;
@@ -85,7 +97,6 @@ export default class Redis extends Component {
 
 
   render() {
-    console.log('-----------------', new Date().getTime());
     const { RedisGet } = this.props;
     const { username, password } = RedisGet || {};
     return (
@@ -94,13 +105,15 @@ export default class Redis extends Component {
         <div className={styles.btns}>
           <div onClick={this.onClickGetRedis.bind(this)}>get redis</div>
           <div onClick={this.onClickLPush.bind(this)}>LPUSH</div>
+          <div onClick={this.onClickLPUSHRPOP.bind(this)}>LPUSH RPOP</div>
+          <div onClick={this.onClickbrpoplpush.bind(this)}>brpoplpush</div>
           <div onClick={this.onClickLPop.bind(this)}>LPOP</div>
           <div onClick={this.onClickRPush.bind(this)}>RPUSH</div>
           <div onClick={this.onClickRPop.bind(this)}>RPOP</div>
         </div>
         {username + ' ' + password}
         <div className={styles.addInfo}>
-          <h2>add redies info</h2>
+          <h2>Add Redis Info</h2>
           <div className={styles.row}>
             <div className={styles.tag}> Redis Key</div>
             <input type="text" ref="txtRedis_Key" />
@@ -110,7 +123,7 @@ export default class Redis extends Component {
             <textarea ref="txtRedis_Value" />
           </div>
           <div className={styles.submit}>
-            <input type="submit" value="submit" onClick={this.inputOnClick.bind(this)} />
+            <input type="submit" value="确定" onClick={this.inputOnClick.bind(this)} />
           </div>
         </div>
       </div>

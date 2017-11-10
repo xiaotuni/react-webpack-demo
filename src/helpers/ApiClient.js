@@ -4,7 +4,7 @@ const methods = ['get', 'post', 'put', 'patch', 'del'];
 function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
   // const _ApiUrl = 'http://127.0.0.1:11111/react/www' + adjustedPath;
-  const _ApiUrl = 'http://127.0.0.1:30081/webapi' + adjustedPath;
+  const _ApiUrl = 'http://192.168.159.1:30081/webapi' + adjustedPath;
   return _ApiUrl;
 }
 
@@ -24,6 +24,8 @@ export default class ApiClient {
       GET: '/redis/get',
       POST: '/redis/post',
       LPUSH: '/redis/lpush',
+      LPUSHRPOP: '/redis/lpushrpop',
+      brpoplpush: '/redis/brpoplpush',
       LPOP: '/redis/lpop',
       RPUSH: '/redis/rpush',
       RPOP: '/redis/rpop',
@@ -64,9 +66,9 @@ export default class ApiClient {
 
         function __SendRequest(_request) {
           _request.end((err, response) => {
-            const { body, headers } = response || {};
-            const { date } = headers || {};
-            console.log(date);
+            const { body } = response || {};
+            // const { date } = headers || {};
+            // console.log(date);
             if (err) {
               __ProcessError(err, body, response);
               reject(body || err);                    // reject-->拒绝; resolve-->解决

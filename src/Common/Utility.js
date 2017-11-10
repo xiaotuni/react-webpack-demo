@@ -89,10 +89,12 @@ export default class Utility {
       UserInfo: 'userinfo',                                                  // 首页-->商品列表
       Es6: 'es6',                                                      // 
       Redis: 'redis',                                                  // 
+      Createjs: 'createjs',                                                  // 
     },
     UrlTitle: {
       '/': { Title: '默认页面', Index: 0 },
       '/redis': { Title: 'Redis', Index: 0 },
+      '/createjs': { Title: 'Createjs', Index: 0 },
       '/page1': { Title: 'page1', Index: 0 },
       '/page2': { Title: 'page2', Index: 0 },
       '/page3': { Title: 'page3', Index: 0 },
