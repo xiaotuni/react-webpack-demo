@@ -68,36 +68,67 @@ export default class Createjs extends Component {
       // 一个定义序列的帧的对象，以发挥命名动画。每个属性对应一个同名动画。
       // 每个动画必须指定播放的帧，还可以包括相关的播放速度（如2 将播放速度的两倍，0.5半）和下一个动画序列的名称。
       animations: {
-        run: [0, 3]
+        down: [0, 3],
+        left: [4, 7],
+        right: [8, 11],
+        up: [12, 15],
       }
 
     };
 
     const spriteSheet = new createjs.SpriteSheet(data);
-    const instance = new createjs.Sprite(spriteSheet, 'run');
+    const instance = new createjs.Sprite(spriteSheet, 'down');
+    const instance2 = new createjs.Sprite(spriteSheet, 'left');
+    instance2.x = 160;
+    instance2.y = 160;
 
     container.addChild(instance);
+    container.addChild(instance2);
     stage.addChild(container);
-    createjs.Ticker.setFPS(1); // 设置帧
+    createjs.Ticker.setFPS(5); // 设置帧
     const _HEIGHT_WIDTH = 80;
     const maxX = stage.canvas.width - _HEIGHT_WIDTH;
     const maxY = stage.canvas.height - _HEIGHT_WIDTH;
-    createjs.Ticker.addEventListener('tick', () => {
-      // console.log(e);
+    const step = 5;
+    const processInstance = () => {
       const _i = instance;
-      let { x, y } = _i;
-      if (x < maxX && y === _HEIGHT_WIDTH) {
-        // Circle will move 10 units to the right.
-        x += 10;
-      } else if (x === maxX && y < maxY) {
-        y += 10;
-      } else if (x > _HEIGHT_WIDTH && y == maxY) {
-        x -= 10;
-      } else if (x <= _HEIGHT_WIDTH) {
-        y -= 10;
+      const { x, y, currentAnimation } = _i;
+      switch (currentAnimation) {
+        case 'down':
+          if (y + step > maxY) {
+            _i.gotoAndPlay('right');
+          } else {
+            _i.y += step;
+          }
+          break;
+        case 'up':
+          if (y - step < 0) {
+            _i.gotoAndPlay('left');
+          } else {
+            _i.y -= step;
+          }
+          break;
+        case 'left':
+          if (x - step < 0) {
+            _i.gotoAndPlay('down');
+          } else {
+            _i.x -= step;
+          }
+          break;
+        case 'right':
+          if (x + step > maxX) {
+            _i.gotoAndPlay('up');
+          } else {
+            _i.x += step;
+          }
+          break;
+        default:
+          break;
       }
-      console.log(_i);
+    };
 
+    createjs.Ticker.addEventListener('tick', () => {
+      processInstance();
       stage.update();
     });
   }
