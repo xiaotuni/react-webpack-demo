@@ -78,18 +78,37 @@ export default class Createjs extends Component {
 
     container.addChild(instance);
     stage.addChild(container);
-    createjs.Ticker.setFPS(5); // 设置帧
-    createjs.Ticker.addEventListener('tick', stage);
-    stage.update();
+    createjs.Ticker.setFPS(1); // 设置帧
+    const _HEIGHT_WIDTH = 80;
+    const maxX = stage.canvas.width - _HEIGHT_WIDTH;
+    const maxY = stage.canvas.height - _HEIGHT_WIDTH;
+    createjs.Ticker.addEventListener('tick', () => {
+      // console.log(e);
+      const _i = instance;
+      let { x, y } = _i;
+      if (x < maxX && y === _HEIGHT_WIDTH) {
+        // Circle will move 10 units to the right.
+        x += 10;
+      } else if (x === maxX && y < maxY) {
+        y += 10;
+      } else if (x > _HEIGHT_WIDTH && y == maxY) {
+        x -= 10;
+      } else if (x <= _HEIGHT_WIDTH) {
+        y -= 10;
+      }
+      console.log(_i);
+
+      stage.update();
+    });
   }
 
   render() {
     return (
-      <div className={comStyles.navbar + ' ' + styles.page1Css}>
+      <div className={comStyles.navbar + ' ' + styles.creactJsCss}>
         <div>
           <canvas id="imageView" width="100" height="100">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
         </div>
-        <canvas id="view" width="100" height="100">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
+        <canvas id="view" width="372" height="500">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
       </div>
     );
   }
