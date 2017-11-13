@@ -24,10 +24,28 @@ export default class Createjs extends Component {
     const stage = new createjs.Stage('imageView');
     // 创建一个 Bitmap 实例
     const circle = new createjs.Shape();
-    circle.graphics.beginFill('DeepSkyBlue').drawCircle(0, 0, 40);
+    const { graphics } = circle;
+    // beginFill
+    // setStrokeStyle
+    // beginStroke
+    // graphics.beginFill('DeepSkyBlue').drawCircle(10, 5, 40);
+    graphics.beginFill('DeepSkyBlue');
+    graphics.drawRect(5, 5, 30, 30);
+    // sp.graphics.beginFill("red").drawCircle(100,100,80);
+    // sp.graphics.beginFill("red").drawRect(200,10,300,180);
+    graphics.f('red').dc(65, 65, 30);                       // 画圆
+    graphics.f('red').dr(100, 10, 100, 80);                  // 方块
+    graphics.s('blue')  // 颜色
+      .ss(1)            // 线的粗细
+      .mt(0, 120)       // 起始点
+      .lt(300, 120)     // 结束点
+      .es();            // 线
+    graphics.f('red').rr(10, 150, 40, 50, 5);              // 圆角矩形
+    graphics.f('red').de(120, 150, 80, 40, 15);               // 椭圆
+    graphics.f('red').dp(280, 170, 40, 5, 0.6, -90);          // 星星
     // Set position of Shape instance.
-    circle.x = 50;
-    circle.y = 50;
+    // circle.x = 20;
+    // circle.y = 20;
     // Add Shape instance to stage display list.
     stage.addChild(circle);
     // 更新 stage 渲染画面
@@ -137,7 +155,7 @@ export default class Createjs extends Component {
     return (
       <div className={comStyles.navbar + ' ' + styles.creactJsCss}>
         <div>
-          <canvas id="imageView" width="100" height="100">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
+          <canvas id="imageView" width="370" height="210">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
         </div>
         <canvas id="view" width="372" height="500">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
       </div>
