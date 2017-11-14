@@ -17,6 +17,29 @@ export default class Createjs extends Component {
     this.createCanvas();
     this.createTest();
   }
+  createbbc(stage) {
+    const { createjs } = window;
+    if (!createjs) {
+      return;
+    }
+    const hw = 100;
+    const hh = 100;
+    const sp = new createjs.Shape();
+    // 背景
+    sp.graphics.beginFill('rgba(254,241,103,1)').drawCircle(hw, hh, 80);
+    // 渐变 beginLinearGradientFill最后这几个参数是相对画布的左上角
+    sp.graphics.beginLinearGradientFill(['rgba(254,241,103,0.5)', 'rgba(227,144,2,0.5)'], [0, 1], hw, hh - 40, hw, hh + 40).drawCircle(hw, hh, 80);
+    // 外环
+    sp.graphics.setStrokeStyle(15).beginStroke('#FFF164').drawCircle(hw, hh, 80);
+    sp.shadow = new createjs.Shadow('#B1820C', 0, 0, 20);
+    // 符号
+    const tt = new createjs.Text('￥', '100px Arial', '#FFF164');
+    tt.x = hw - 50;
+    tt.y = hh - 55;
+    tt.shadow = new createjs.Shadow('#B1820C', 0, 0, 10);
+    stage.addChild(sp);
+    stage.addChild(tt);
+  }
 
   createCanvas() {
     // 通过画布ID 创建一个 Stage 实例
@@ -24,6 +47,9 @@ export default class Createjs extends Component {
     const stage = new createjs.Stage('imageView');
     // 创建一个 Bitmap 实例
     const circle = new createjs.Shape();
+    circle.addEventListener('click', (ee) => {
+      console.log(ee);
+    });
     const { graphics } = circle;
     // beginFill
     // setStrokeStyle
@@ -34,31 +60,85 @@ export default class Createjs extends Component {
     // sp.graphics.beginFill("red").drawCircle(100,100,80);
     // sp.graphics.beginFill("red").drawRect(200,10,300,180);
     graphics.f('red').dc(65, 65, 30);                       // 画圆
-    graphics.f('red').dr(100, 10, 100, 80);                  // 方块
+    // graphics.f('red').dr(100, 10, 100, 80);                  // 方块
     graphics.s('blue')  // 颜色
-      .ss(1)            // 线的粗细
-      .mt(0, 120)       // 起始点
-      .lt(300, 120)     // 结束点
+      .ss(5)            // 线的粗细
+      .mt(0, 110)       // 起始点
+      .lt(300, 110)     // 结束点
       .es();            // 线
     graphics.f('red').rr(10, 150, 40, 50, 5);              // 圆角矩形
-    graphics.f('red').de(120, 150, 80, 40, 15);               // 椭圆
-    graphics.f('red').dp(280, 170, 40, 5, 0.6, -90);          // 星星
+    // graphics.f('red').de(120, 150, 80, 40, 15);               // 椭圆
+    // graphics.f('red').dp(280, 170, 40, 5, 0.6, -90);          // 星星
     // Set position of Shape instance.
     // circle.x = 20;
     // circle.y = 20;
     // Add Shape instance to stage display list.
     stage.addChild(circle);
+    // this.create$(stage);
     // 更新 stage 渲染画面
+    this.createLine(createjs, stage);         // 线
+    this.createRect(createjs, stage);         // 矩形
+    this.createTouyuan(createjs, stage);      // 椭圆
+    this.createStar(createjs, stage);         // 星
+    this.createCircle(createjs, stage);       // 圆
     stage.update();
-
-    stage.addEventListener('click', (e) => {
-      console.log(e);
-      console.log('click');
+    // stage.addEventListener('click', (e) => {
+    //   console.log(e);
+    // });
+  }
+  createCircle(createjs, stage) {
+    const sp = new createjs.Shape();
+    sp.addEventListener('click', (ee) => {
+      console.log('---------圆形-------------');
+      console.log(ee);
     });
+    sp.graphics.f('red').dc(65, 65, 30);                       // 画圆
+    stage.addChild(sp);
+  }
+  createStar(createjs, stage) {
+    const sp = new createjs.Shape();
+    sp.addEventListener('click', (ee) => {
+      console.log('---------星星-------------');
+      console.log(ee);
+    });
+    sp.graphics.f('red').dp(280, 50, 40, 5, 0.6, -90);          // 星星
+    stage.addChild(sp);
+  }
+  createTouyuan(createjs, stage) {
+    const sp = new createjs.Shape();
+    sp.addEventListener('click', (ee) => {
+      console.log('---------椭圆-------------');
+      console.log(ee);
+    });
+    sp.graphics.f('red').de(120, 150, 80, 40, 15);               // 椭圆
+    stage.addChild(sp);
+  }
+
+  createRect(createjs, stage) {
+    const sp = new createjs.Shape();
+    sp.addEventListener('click', (ee) => {
+      console.log('---------方块-------------');
+      console.log(ee);
+    });
+    sp.graphics.f('red').dr(100, 10, 100, 80);                  // 方块
+    stage.addChild(sp);
+  }
+  createLine(createjs, stage) {
+    const circle = new createjs.Shape();
+    circle.addEventListener('click', (ee) => {
+      console.log('---------createLine-------------');
+      console.log(ee);
+    });
+    circle.graphics.s('red')         // 颜色
+      .ss(10)                        // 线的粗细
+      .mt(0, 135)                    // 起始点
+      .lt(300, 135)                  // 结束点
+      .es();                         // 线
+    stage.addChild(circle);
   }
 
   createTest() {
-    const imgs = 'https://raw.githubusercontent.com/YeXiaoChao/PluginsFromJS/master/CreateJS/imgs/easeljs-preloadjs-animation/moveGuy.png';
+    const imgs = require('./img/moveGuy.png');
     const { createjs } = window;
     if (!createjs) {
       return;
@@ -97,6 +177,17 @@ export default class Createjs extends Component {
     const spriteSheet = new createjs.SpriteSheet(data);
     const instance = new createjs.Sprite(spriteSheet, 'down');
     const instance2 = new createjs.Sprite(spriteSheet, 'left');
+    instance.__FLOG__ = 'instance';
+    instance2.__FLOG__ = 'instance2';
+    instance.on('click', (e) => {
+      console.log('instance----->', e);
+    });
+    let isBegin = false;
+    instance2.on('click', (e) => {
+      console.log('instance2----->', e);
+      isBegin = !isBegin;
+    });
+
     instance2.x = 160;
     instance2.y = 160;
 
@@ -145,10 +236,36 @@ export default class Createjs extends Component {
       }
     };
 
-    createjs.Ticker.addEventListener('tick', () => {
-      processInstance();
+    // const self = this;
+    // const processInstance2 = (event) => {
+      // event.stopPropagation();
+      // if (!isBegin) {
+      //   return;
+      // }
+      // const { CurrentClickPosition } = self.state;
+      // const { x = 0, y = 0 } = CurrentClickPosition || {};
+      // const { x: ix, y: iy } = instance2;
+      // console.log(x, y, ix, iy);
+      // instance2.x = x;
+      // instance2.y = y;
+      // isBegin = !isBegin;
+    // };
+
+    createjs.Ticker.addEventListener('tick', (event) => {
+      processInstance(event);
+      // processInstance2(event);
       stage.update();
     });
+  }
+
+  __handlerOnClickCanvas(event) {
+    console.log(event.nativeEvent);
+    event.stopPropagation();
+
+    const { nativeEvent } = event;
+    const { x, y } = nativeEvent || {};
+    this.state.CurrentClickPosition = { x, y };
+    console.log(x, y);
   }
 
   render() {
@@ -157,7 +274,7 @@ export default class Createjs extends Component {
         <div>
           <canvas id="imageView" width="370" height="210">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
         </div>
-        <canvas id="view" width="372" height="500">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
+        <canvas refs="canView" id="view" onClick={this.__handlerOnClickCanvas.bind(this)} width="372" height="500">您的浏览器版本过低，请更换更高版本的浏览器</canvas>
       </div>
     );
   }
