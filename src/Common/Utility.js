@@ -91,10 +91,10 @@ export default class Utility {
     },
     UrlTitle: {
       '/': { Title: '默认页面', Index: 0 },
-      '/page1': { Title: 'page1', Index: 0 },
-      '/page2': { Title: 'page2', Index: 0 },
-      '/page3': { Title: 'page3', Index: 0 },
-      '/page4': { Title: 'page4', Index: 0 },
+      '/page1': { Title: '张三', Index: 0 },
+      '/page2': { Title: '李四页', Index: 0 },
+      '/page3': { Title: '详情页面啦', Index: 0 },
+      '/page4': { Title: '测试页面了', Index: 0 },
       '/counter': { Title: '计数', Index: 0 },
       '/userinfo': { Title: '用户信息', Index: 0 },
       '/es6': { Title: 'Es6', Index: 0 },
@@ -636,7 +636,11 @@ export default class Utility {
 
       if (url === this.constItem.UrlItem.GoBack) {
         this.setContent(this.constItem.KeyGoBack, true);
-        __history.goBack();
+        if (!__history) {
+          window.history.back();
+        } else {
+          __history.goBack();
+        }
         return;
       }
       const __pathname = '/' + url;

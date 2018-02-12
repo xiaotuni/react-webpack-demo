@@ -32,8 +32,18 @@ export default class App extends Component {
         Utility.setContent(__IsGoBackKey, action === 'POP');
         const { pathname } = location;
         if (UrlTitle && UrlTitle[pathname]) {
-          self.state.UrlTitle = UrlTitle[pathname];
-          Utility.setContent('__URL_TITLE_INFO_', UrlTitle[pathname]);
+          const updateTitle = () => {
+            console.log('更新标题...');
+            self.state.UrlTitle = UrlTitle[pathname];
+            Utility.setContent('__URL_TITLE_INFO_', UrlTitle[pathname]);
+          };
+          updateTitle();
+          // if (action === 'POP') {
+          // } else {
+          //   setTimeout(() => {
+          //     updateTitle();
+          //   }, 0);
+          // }
         }
       });
     }
@@ -42,11 +52,11 @@ export default class App extends Component {
     console.log('app did mount');
   }
 
-
   getTransitionsName() {
     const __IsGoback = Utility.getContent(Utility.constItem.KeyGoBack);
     const __tranName = {};
     if (!!__IsGoback) {
+      console.log('后退...');
       __tranName.enter = styles.spEnterReturn;
       __tranName.enterActive = styles.spEnterActiveReturn;
       __tranName.leave = styles.spLeaveReturn;
@@ -54,6 +64,7 @@ export default class App extends Component {
       __tranName.appear = styles.spAppearReturn;
       __tranName.appearActive = styles.spAppearActiveReturn;
     } else {
+      console.log('前进...');
       __tranName.enter = styles.spEnter;
       __tranName.enterActive = styles.spEnterActive;
       __tranName.leave = styles.spLeave;
@@ -64,16 +75,12 @@ export default class App extends Component {
     return __tranName;
   }
 
-  getTitle() {
-    const title = Utility.getContent('__URL_TITLE_INFO_');
-    if (title) {
-      return title.Title;
-    }
-    return '默认标题';
+  UpdateRender() {
+    this.setState({ __CURRENT_TIME: new Date() });
   }
 
   render() {
-    const __timeout = 500;
+    const __timeout = 500 * 1;
     const { context } = this;
     const { router } = context || {};
     const { route } = router || {};

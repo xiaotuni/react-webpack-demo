@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Utility } from 'components';
-
 const styles = require('./scss/Home.scss');
 
 export default class Home extends Component {
@@ -20,21 +18,6 @@ export default class Home extends Component {
   }
 
   componentWillMount() {
-    const __key = Utility.constItem.KeyHistory;
-    if (!Utility.getContent(__key)) {
-      Utility.setContent(__key, this.context.router.history);
-      const self = this;
-      const { UrlTitle } = Utility.constItem;
-      const __IsGoBackKey = Utility.constItem.KeyGoBack;
-      this.context.router.history.listen((location, action) => {
-        Utility.setContent(__IsGoBackKey, action === 'POP');
-        const { pathname } = location;
-        if (UrlTitle && UrlTitle[pathname]) {
-          self.state.UrlTitle = UrlTitle[pathname];
-          Utility.setContent('__URL_TITLE_INFO_', UrlTitle[pathname]);
-        }
-      });
-    }
   }
 
   componentDidMount() {
@@ -43,7 +26,6 @@ export default class Home extends Component {
 
   componentWillUnmount() {
     delete this.state.IsMount;
-    console.log('-------home-----component Will Umount');
   }
 
   __UpdateRender() {
@@ -52,14 +34,7 @@ export default class Home extends Component {
     }
   }
 
-  __HandlerJudgPage() {
-    Utility.toPage('userinfo');
-  }
   render() {
-    // const { UrlTitle } = this.state;
-    // const { Title } = UrlTitle || {};
-    // const __Flag = 0;
-
     return (
       <div className={styles.homeCss}>
         {}
@@ -67,6 +42,3 @@ export default class Home extends Component {
     );
   }
 }
-// {
-//   __Flag === 2 && <Navbar Title={Title} />
-// }

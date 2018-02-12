@@ -4,7 +4,8 @@ const methods = ['get', 'post', 'put', 'patch', 'del'];
 function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
   // const _ApiUrl = 'http://127.0.0.1:11111/react/www' + adjustedPath;
-  const _ApiUrl = 'https://127.0.0.1:30081/webapi' + adjustedPath;
+  // const _ApiUrl = 'https://127.0.0.1:30081/webapi' + adjustedPath;
+  const _ApiUrl = 'http://192.168.199.201:3000/api' + adjustedPath;
   return _ApiUrl;
 }
 
@@ -20,6 +21,15 @@ export default class ApiClient {
     Users: 'userinfo/users',
     MapPlacelist: 'map/placelist',
     Demo: 'demo',
+    RabbitMQ: {
+      helloworldNumber: 'rabbitmq/helloworldNumber',
+      helloworld: 'rabbitmq/helloworld',
+      helloworldStatus: 'rabbitmq/helloworldStatus/{0}',
+    },
+    Ctrs: {
+      order: 'ctrls/order/',
+      orderStatus: 'ctrls/order/{0}',
+    }
   }
 
   constructor() {
@@ -56,9 +66,7 @@ export default class ApiClient {
 
         function __SendRequest(_request) {
           _request.end((err, response) => {
-            const { body, headers } = response || {};
-            const { date } = headers || {};
-            console.log(date);
+            const { body } = response || {};
             if (err) {
               __ProcessError(err, body, response);
               reject(body || err);                    // reject-->拒绝; resolve-->解决

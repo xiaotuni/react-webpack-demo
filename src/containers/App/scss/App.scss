@@ -1,5 +1,5 @@
-$top-hight:0;// 40px;
-
+$top-hight:0; // 40px;
+$easeOut :500ms;
 .com {
   background: #fff;
   position: fixed;
@@ -18,7 +18,7 @@ $top-hight:0;// 40px;
 .__spEnterActive {
   @extend .com;
   transform: translate3d(0, 0, 0);
-  transition: all ease-out 500ms;
+  transition: all ease-out $easeOut;
 }
 
 .__spLeave {
@@ -29,7 +29,7 @@ $top-hight:0;// 40px;
 .__spLeaveActive {
   @extend .com;
   transform: translate3d(-100%, 0, 0);
-  transition: all ease-out 500ms;
+  transition: all ease-out $easeOut;
 }
 
 .__spAppear {
@@ -41,6 +41,7 @@ $top-hight:0;// 40px;
   transition: opacity 1.5s ease-in;
 }
 
+
 /**************************返回***************************/
 
 .__spEnterReturn {
@@ -51,7 +52,7 @@ $top-hight:0;// 40px;
 .__spEnterActiveReturn {
   @extend .com;
   transform: translate3d(0, 0, 0);
-  transition: all ease-out 500ms;
+  transition: all ease-out $easeOut;
 }
 
 .__spLeaveReturn {
@@ -62,7 +63,7 @@ $top-hight:0;// 40px;
 .__spLeaveActiveReturn {
   @extend .com;
   transform: translate3d(100%, 0, 0);
-  transition: all ease-out 500ms;
+  transition: all ease-out $easeOut;
 }
 
 .__spAppearReturn {
@@ -80,27 +81,21 @@ $top-hight:0;// 40px;
   background: #fff;
   position: absolute;
   top: $top-hight;
-
   .spEnter {
     @extend .__spEnter;
   }
-
   .spEnterActive {
     @extend .__spEnterActive;
   }
-
   .spLeave {
     @extend .__spLeave;
   }
-
   .spLeaveActive {
     @extend .__spLeaveActive;
   }
-
   .spAppear {
     @extend .__spAppear;
   }
-
   .spAppearActive {
     @extend .__spAppearActive;
   }
@@ -108,23 +103,18 @@ $top-hight:0;// 40px;
   .spEnterReturn {
     @extend .__spEnterReturn;
   }
-
   .spEnterActiveReturn {
     @extend .__spEnterActiveReturn;
   }
-
   .spLeaveReturn {
     @extend .__spLeaveReturn;
   }
-
   .spLeaveActiveReturn {
     @extend .__spLeaveActiveReturn;
   }
-
   .spAppearReturn {
     @extend .__spAppearReturn;
   }
-
   .spAppearActiveReturn {
     @extend .__spAppearActiveReturn;
   }

@@ -15,17 +15,17 @@ export default class ListItem extends Component {
     this.state = {};
   }
   componentWillMount() {
-    console.log('-listitem-1----will mount------');
+    // console.log('-listitem-1----will mount------');
   }
   componentDidMount() {
-    console.log('-listitem-2----did mount------');
+    // console.log('-listitem-2----did mount------');
   }
   componentWillReceiveProps(nextProps, nextState) {
     const { a } = nextState;
     if (a) {
       console.log(a);
     }
-    console.log('-listitem-3----will receive props------------');
+    // console.log('-listitem-3----will receive props------------');
   }
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     const { a } = nextContext;
@@ -33,7 +33,7 @@ export default class ListItem extends Component {
       console.log(a);
     }
 
-    console.log('-listitem-4----should update-----------------');
+    // console.log('-listitem-4----should update-----------------');
     return true;
   }
   componentWillUpdate(nextProps, nextState, nextContext) {
@@ -41,17 +41,17 @@ export default class ListItem extends Component {
     if (a) {
       console.log(a);
     }
-    console.log('-listitem-5----will update-------------');
+    // console.log('-listitem-5----will update-------------');
   }
   componentDidUpdate(prevProps, prevState) {
     const { a } = prevState;
     if (a) {
       console.log(a);
     }
-    console.log('-listitem-6----did update-----------');
+    // console.log('-listitem-6----did update-----------');
   }
   componentWillUnmount() {
-    console.log('-listitem-7----will unmount-----------');
+    // console.log('-listitem-7----will unmount-----------');
   }
 
   onClickSelectItem(item, index) {
@@ -63,7 +63,7 @@ export default class ListItem extends Component {
   }
 
   componentDidCatch() {
-    console.log('-listitem-----------did catch-------------');
+    // console.log('-listitem-----------did catch-------------');
   }
 
   BuildHtml() {

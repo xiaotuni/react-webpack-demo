@@ -7,11 +7,10 @@ export default class Page3 extends Component {
     super(props);
 
     this.state = {};
-    console.log('----page3---', new Date().getTime());
+    // console.log('----page3---', new Date().getTime());
   }
 
   render() {
-    console.log('----page3--111-', new Date().getTime());
     return (
       <div className={comStyles.navbar}>
         <div className={comStyles.btns}>

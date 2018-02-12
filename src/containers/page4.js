@@ -10,62 +10,23 @@ export default class Page4 extends Component {
   }
 
   componentWillMount() {
-    console.log('--1----will mount------');
   }
   componentDidMount() {
-    console.log('--2----did mount------');
   }
-  componentWillReceiveProps(nextProps, nextState) {
-    const { a } = nextState;
-    if (a) {
-      console.log(a);
-    }
-    console.log('--3----will receive props------------');
-  }
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    const { a } = nextContext;
-    if (a) {
-      console.log(a);
-    }
-
-    console.log('--4----should update-----------------');
-    return true;
-  }
-  componentWillUpdate(nextProps, nextState, nextContext) {
-    const { a } = nextContext;
-    if (a) {
-      console.log(a);
-    }
-    console.log('--5----will update-------------');
-  }
-  componentDidUpdate(prevProps, prevState) {
-    const { a } = prevState;
-    if (a) {
-      console.log(a);
-    }
-    console.log('--6----did update--12---------');
-  }
-  componentWillUnmount() {
-    console.log('--7----will unmount-----------');
-  }
-
-
   onListItemDelete(item, index) {
     this.state.DataSource.splice(index, 1);
     this.setState({ CurrentDate: new Date() });
   }
 
   componentDidCatch() {
-    console.log('------------did catch-------------');
   }
 
   btnUpdateDate() {
-    // new Date().toLocaleTimeString();
     const { DataSource } = this.state;
     DataSource.push({ id: DataSource.length + 1, CurrentDate: new Date(), Name: '哈哈__' });
-
     this.setState({ CurrentDate: new Date() });
   }
+
   btnArrayObjectSort() {
     const ArrayObj = [
       { Count: 7, name: 1 },
@@ -85,8 +46,6 @@ export default class Page4 extends Component {
       aaaList.push(Math.round(Math.random() * 100));
     }
     const _BeginDate = new Date().getTime();
-    console.log('----------开始--------', _BeginDate);
-    // console.log(JSON.stringify(aaaList));
     const aaaCountInfo = {};
     aaaList.forEach((key) => {
       if (!aaaCountInfo[key]) {
@@ -94,11 +53,7 @@ export default class Page4 extends Component {
       }
       aaaCountInfo[key].Count += 1;
     });
-    // console.log(JSON.stringify(aaaCountInfo));
-    console.log('------------------------');
     const aaaValue = Object.values(aaaCountInfo);
-    // console.log(JSON.stringify(aaaValue));
-    console.log('------------------------');
     const CountResult = aaaValue.sort((a, b) => a.Count - b.Count);
     console.log('------------------------');
     console.log(JSON.stringify(CountResult));

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Utility, Navbar } from 'components';
 
-class Bundle extends Component {
+export default class Bundle extends Component {
   static propTypes = {
     load: PropTypes.any,
     children: PropTypes.any,
@@ -52,5 +52,3 @@ class Bundle extends Component {
     );
   }
 }
-
-export default Bundle;

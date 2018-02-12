@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ApiInfo } from 'components';
+import { Utility, ApiInfo } from 'components';
 import * as CommonActions from 'reducers/reduxCommon';
 
 const comStyles = require('styles/Common.scss');
@@ -17,6 +17,7 @@ export default class Es6 extends Component {
     Title: PropTypes.string,
     UserList: PropTypes.any,
     onApiGet: PropTypes.func,
+    onApiPost: PropTypes.func,
   }
   constructor(props) {
     super(props);
@@ -24,8 +25,6 @@ export default class Es6 extends Component {
   }
 
   componentWillMount() {
-    //  this.testDemo();
-    // this.testClassDemo();
     try {
       this.testObjectDefineProperty();
       this.testGenerator();
@@ -55,6 +54,58 @@ export default class Es6 extends Component {
     const { UserList } = this.props;
     this.printLine('+++++++++++++++++');
     console.log(UserList);
+  }
+  async testAsyncAwait1() {
+    const { onApiGet } = this.props;
+    const num = 30;
+    const aaaaaaaa = async (i) => {
+      try {
+        const result = await onApiGet('helloworld_' + i, ApiInfo.RabbitMQ.helloworld, {});
+        const { queueName, orderCode } = result;
+        // console.log('返回结果队列ID', result);
+        const url = Utility.format(ApiInfo.RabbitMQ.helloworldStatus, queueName);
+        const status = await onApiGet('helloworldStatus_' + i, url, { params: { orderCode } });
+        console.log('处理结果：', JSON.stringify(status));
+      } catch (ex) {
+        console.log(ex);
+      }
+    };
+    for (let i = 0; i < num; i += 1) {
+      aaaaaaaa(i);
+    }
+  }
+
+  async testAsyncAwait2() {
+    const number = parseInt(this.txtNumber.value, 0);
+    const { onApiPost, onApiGet } = this.props;
+    const result = await onApiPost('aaaa', ApiInfo.RabbitMQ.helloworldNumber, { data: { number } });
+    const { queueName, orderCode } = result;
+    console.log('=========', result);
+    const url = Utility.format(ApiInfo.RabbitMQ.helloworldStatus, queueName);
+    const status = await onApiGet('helloworldStatus_', url, { params: { orderCode } });
+    console.log('=========', status);
+  }
+
+
+  async updateStorage(threadNumber) {
+    const { onApiPost, onApiGet } = this.props;
+    const sendData = async (index) => {
+      console.log('当前正处理第【%d】条记录。', index);
+      const data = {
+        product_id: '5a4ed63b8fb59905da54d841',
+        quantity: parseInt((Math.random() * 5) + 1, 0)
+      };
+      const result = await onApiPost('aaaa', ApiInfo.Ctrs.order, { data });
+      const { flag } = result;
+      console.log('====【%d】=====', index, result);
+      const url = Utility.format(ApiInfo.Ctrs.orderStatus, flag);
+      const status = await onApiGet('helloworldStatus_', url, { params: {} });
+      console.log('====【%d】=====', index, status);
+    };
+
+    for (let i = 0; i < threadNumber; i += 1) {
+      sendData(i);
+    }
   }
 
   testGenerator() {
@@ -210,6 +261,7 @@ export default class Es6 extends Component {
 
     this.testIterator();
   }
+
   testIterator() {
     console.log('------------testIterator-------------');
     const makeIterator = (arr) => {
@@ -265,15 +317,18 @@ export default class Es6 extends Component {
   }
 
   render() {
-    console.log('------------------render----------');
-    console.log(this.props.UserList);
-    console.log('current date:', new Date());
     return (
-      <div className={comStyles.navbar + ' ' + styles.page1Css}>
-        <div onClick={() => {
-          this.testAsyncAwait();
-        }}>调用API</div>
-        <div>aecdqqaa</div>
+      <div className={comStyles.navbar + ' ' + styles.es6Css}>
+        <div className={styles.btns}>
+          <div onClick={() => { this.testAsyncAwait(); }}>调用API</div>
+          <div onClick={() => { this.testAsyncAwait1(); }}>调用RabbitMQAPI</div>
+          <div onClick={() => { this.updateStorage(1000); }}>更新库存</div>
+
+        </div>
+        <div className={styles.inputNumber}>
+          <input placeholder="库存数量" ref={(ctrl) => { this.txtNumber = ctrl; }} />
+          <div onClick={() => { this.testAsyncAwait2(); }}>提交</div>
+        </div>
       </div>
     );
   }

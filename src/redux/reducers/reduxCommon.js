@@ -1,4 +1,3 @@
-// import Utility from '../../Common/Utility';
 const __Base = 'XIAOTUNI/REDUX/Common/';
 const Load = __Base + 'Load';
 const LoadSuccess = __Base + 'LoadSuccess';
