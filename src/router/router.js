@@ -4,7 +4,7 @@ import pageComponent from 'containers';
 
 import Bundle from './Bundle';
 const {
-  App, Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4, Es6,
+  App, Default, UserInfo, Counter, Home, Page1, Page2, Page3, Page4, Es6, HybridJS,
 } = pageComponent;
 const AppCfg = require('../config');
 
@@ -23,8 +23,9 @@ const CreateComponent = (component) => () => (
 const getRouters = () => (
   <Router basename={AppCfg.app.BaseName}>
     <App>
-      <Route exact path="/" component={CreateComponent(Default)} />
+      <Route exact path="/" component={CreateComponent(HybridJS)} />
       <Route path="/home" component={CreateComponent(Home)} />
+      <Route path="/default" component={CreateComponent(Default)} />
       <Route path="/page1" component={CreateComponent(Page1)} />
       <Route path="/page2" component={CreateComponent(Page2)} />
       <Route path="/page3" component={CreateComponent(Page3)} />
@@ -32,6 +33,7 @@ const getRouters = () => (
       <Route path="/counter" component={CreateComponent(Counter)} />
       <Route path="/userinfo" component={CreateComponent(UserInfo)} />
       <Route path="/es6" component={CreateComponent(Es6)} />
+      <Route path="/hybridJS" component={CreateComponent(HybridJS)} />
     </App>
   </Router>
 );

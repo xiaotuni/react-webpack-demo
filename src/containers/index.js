@@ -8,6 +8,7 @@ import Home from 'bundle-loader?lazy&name=home!containers/Home/Home';
 import Counter from 'bundle-loader?lazy&name=counter!containers/Counter/Counter';
 import UserInfo from 'bundle-loader?lazy&name=userInfo!containers/UserInfo/UserInfo';
 import Es6 from 'bundle-loader?lazy&name=es6!containers/Es6/Es6';
+import HybridJS from 'bundle-loader?lazy&name=es6!containers/HybridJS/HybridJS';
 // import Default from './Default/Default';
 // import Page1 from './page1';
 // import Page2 from './page2';
@@ -19,5 +20,5 @@ import Es6 from 'bundle-loader?lazy&name=es6!containers/Es6/Es6';
 // import Es6 from './Es6/Es6';
 
 export default {
-  App, Default, Page1, Page2, Page3, Page4, Home, Counter, UserInfo, Es6
+  App, Default, HybridJS, Page1, Page2, Page3, Page4, Home, Counter, UserInfo, Es6
 };

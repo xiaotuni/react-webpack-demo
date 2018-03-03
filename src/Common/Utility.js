@@ -98,6 +98,7 @@ export default class Utility {
       '/counter': { Title: '计数', Index: 0 },
       '/userinfo': { Title: '用户信息', Index: 0 },
       '/es6': { Title: 'Es6', Index: 0 },
+      '/hybridJS': { Title: 'HybridJS', Index: 0 },
     },
     /**
      * 显示模式
