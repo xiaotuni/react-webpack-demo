@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 const comStyles = require('styles/Common.scss');
 const styles = require('./scss/HybridJS.scss');
 
+import { Input, Button } from 'components';
+
 export default class HybridJS extends Component {
   static propTypes = {
     children: PropTypes.object,                                // 子项
@@ -85,6 +87,12 @@ export default class HybridJS extends Component {
           <div className={comStyles.btn} onClick={this.onClick1.bind(this, 'getVersion')}>getVersion</div>
           <div className={comStyles.btn} onClick={this.onClick_GetAddress.bind(this)}>getAddress</div>
           <div className={comStyles.btn} onClick={this.onClick_ScanQRCode.bind(this)}>ScanQRCode</div>
+        </div>
+        <div>
+          <Input />
+        </div>
+        <div>
+          <Button>antd_button_click</Button>
         </div>
       </div>
     );

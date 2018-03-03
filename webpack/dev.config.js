@@ -22,24 +22,18 @@ const devConfig = {
         test: /\.scss$/,
         use: [
           { loader: 'style-loader' },
-          {
-            loader: 'css-loader', options: {
-              sourceMap: true, modules: true,
-              localIdentName: '[local]_[hash:base64:5]'
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              config: {
-                path: 'postcss.config.js'
-              }
-            }
-          },
-          {
-            loader: 'sass-loader', options: { sourceMap: true }
-          }
+          { loader: 'css-loader', options: { sourceMap: true, modules: true, localIdentName: '[local]_[hash:base64:5]' } },
+          { loader: 'postcss-loader', options: { sourceMap: true, config: { path: 'postcss.config.js' } } },
+          { loader: 'sass-loader', options: { sourceMap: true } }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader', options: { sourceMap: true, modules: true, localIdentName: '[local]_[hash:base64:5]' } },
+          { loader: 'postcss-loader', options: { sourceMap: true, config: { path: 'postcss.config.js' } } },
+          { loader: 'less-loader', options: { sourceMap: true, paths: [path.resolve(__dirname, 'node_modules')], javascriptEnabled: true } }
         ]
       }
     ]

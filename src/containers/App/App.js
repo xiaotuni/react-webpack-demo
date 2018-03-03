@@ -79,6 +79,12 @@ export default class App extends Component {
     this.setState({ __CURRENT_TIME: new Date() });
   }
 
+  importOtherCss() {
+    require('antd/lib/style/index.css');
+    require('antd/lib/input/style/index.css');
+    require('antd/lib/button/style/index.css');
+  }
+
   render() {
     const __timeout = 500 * 1;
     const { context } = this;
@@ -86,6 +92,7 @@ export default class App extends Component {
     const { route } = router || {};
     const { location } = route || {};
     const { key } = location || {};
+    this.importOtherCss();
 
     return (
       <div className={styles.appContent}>

@@ -21,25 +21,33 @@ const proCfg = {
   devtool: 'source-map',
   module: {
     rules: [
-      { test: /\.css$/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }) },
+      {
+        test: /\.css$/, use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { minimize: true } }]
+        })
+      },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            {
-              loader: 'css-loader', options: {
-                sourceMap: true, minimize: true, modules: true,
-                localIdentName: '[local]_[hash:base64:5]'
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: { sourceMap: true, config: { path: 'postcss.config.js' } }
-            },
-            {
-              loader: 'sass-loader', options: { sourceMap: true }
-            }]
+            { loader: 'css-loader', options: { minimize: true, modules: true, localIdentName: '[local]_[hash:base64:5]' } },
+            { loader: 'postcss-loader', options: { minimize: true, config: { path: 'postcss.config.js' } } },
+            { loader: 'sass-loader', options: { minimize: true } }
+          ]
+        })
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { minimize: true, modules: true, localIdentName: '[local]_[hash:base64:5]' } },
+            { loader: 'postcss-loader', options: { minimize: true, config: { path: 'postcss.config.js' } } },
+            { loader: 'less-loader', options: { minimize: true } }
+          ]
         })
       }
     ]
