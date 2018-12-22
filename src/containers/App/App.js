@@ -83,7 +83,7 @@ export default class App extends Component {
     return (
       <div className={styles.appContent}>
         <CSSTransitionGroup
-          component="div"
+          // component="div"  // 要不能界面上双会多一个div
           transitionName={this.getTransitionsName()}
           transitionAppear
           transitionAppearTimeout={__timeout}

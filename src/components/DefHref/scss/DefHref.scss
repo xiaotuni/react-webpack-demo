@@ -1,21 +1,23 @@
 .defHrefCss {
-  font-size: 12px;
-
+  font-size: 14px;
   .groups {
-
     display: flex;
     flex-wrap: wrap;
-
+    text-align: center;
     .urlInfo {
-      width: 31vw;
-
+      width: 33.33vw;
       .url {
-        margin: 5px;
-        padding: 5px 10px;
-        border: 1px solid #a0a0a0a0;
-        border-radius: 5px;
-        background: rgba(219, 186, 186, 0.88);
+        padding: 5px;
+        >div {
+          padding: 5px 10px; // margin: 5px;
+          border: 1px solid #a0a0a0a0;
+          border-radius: 5px;
+          background: rgba(219, 186, 186, 0.88);
+        }
       }
+    }
+    & :nth-of-type(3n) {
+      margin-right: 0px;
     }
   }
 }

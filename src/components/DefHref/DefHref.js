@@ -27,8 +27,9 @@ export default class DefHref extends Component {
       return (
         <div key={index} className={styles.urlInfo}>
           <div className={styles.url} onClick={this.__HandlerToJump.bind(this, url, key)}>
-            {index + 1}、
-            {url.Title}
+            <div>
+              {`${index + 1}${url.Title}`}
+            </div>
           </div>
         </div>
       );

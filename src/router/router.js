@@ -10,7 +10,7 @@ const { isProduction } = AppCfg;
 import Bundle from './Bundle';
 
 const Loading = () => {
-  return <div>Loading...</div>;
+  return <div>加载中...</div>;
 };
 // args = {history, location, match} 三个参数
 const CreateComponent = (component) => (args) => (

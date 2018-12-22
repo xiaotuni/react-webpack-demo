@@ -70,6 +70,7 @@
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
+    "postcss-pxtorem": "^4.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "next",
