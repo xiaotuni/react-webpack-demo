@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-import { Utility } from 'components';
+import Utility from '../../Common/Utility';
 const styles = require('./scss/DefHref.scss');
 
 export default class DefHref extends Component {
@@ -28,7 +27,7 @@ export default class DefHref extends Component {
         <div key={index} className={styles.urlInfo}>
           <div className={styles.url} onClick={this.__HandlerToJump.bind(this, url, key)}>
             <div>
-              {`${index + 1}${url.Title}`}
+              {`${index + 1}:${url.Title}`}
             </div>
           </div>
         </div>

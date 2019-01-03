@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import { Utility, Navbar } from 'components';
 
+const styles = require('styles/Common.scss');
+
 class Bundle extends Component {
   static propTypes = {
     load: PropTypes.any,
@@ -29,10 +31,10 @@ class Bundle extends Component {
 
   getTitle() {
     const title = Utility.getContent('__URL_TITLE_INFO_');
-    if (title) {
-      return title.Title;
-    }
-    return '默认标题';
+    const _value = title ? title.Title : '默认标题';
+
+    document.title = _value;
+    return _value;
   }
 
   load(props) {
@@ -52,9 +54,11 @@ class Bundle extends Component {
     return (
       <div>
         <Navbar Title={this.getTitle()} />
-        {
-          this.props.children(this.state.mod)
-        }
+        <div className={styles.navbar}>
+          {
+            this.props.children(this.state.mod)
+          }
+        </div>
       </div>
     );
   }

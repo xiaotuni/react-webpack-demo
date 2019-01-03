@@ -1,0 +1,37 @@
+.loanTaxRateCss {
+  position: relative;
+  .result {
+    position: relative;
+    margin-top: 0px;
+    .header {
+      display: flex;
+      >div {
+        flex: 1;
+        text-align: center;
+        padding: 5px;
+        font-size: 18px;
+        border-right: 1px solid #ccc;
+        &:last-child {
+          border-right: none;
+        }
+      }
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    .rows {
+      height: 50vh;
+      position: absolute;
+      margin-bottom: 0px;
+      width: 100%;
+      overflow: auto;
+      // padding-bottom: 10vh;
+      .row {
+        @extend .header;
+        >div {
+          font-size: 14px;
+        }
+        border-top: none;
+      }
+    }
+  }
+}

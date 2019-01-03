@@ -2,6 +2,8 @@ import cfg from '../config';
 const { isProduction } = cfg;
 
 import App from './App/App';
+import BaseComponent from '../components/BaseComponent';
+
 import Default from './Default/Default';
 import page1 from './page1/page1';
 import page2 from './page2/page2';
@@ -11,12 +13,13 @@ import Home from './Home/Home';
 import Counter from './Counter/Counter';
 import UserInfo from './UserInfo/UserInfo';
 import Es6 from './Es6/Es6';
+import Rate from './Rate/Rate';
+import LoanTaxRate from './LoanTaxRate/LoanTaxRate';
 
 const obj = {
-  Default, page1, page2, page3, page4, Home, UserInfo, Es6, Counter
+  Default, page1, page2, page3, page4, Home, UserInfo, Es6, Counter, Rate, LoanTaxRate
 };
-if (!!isProduction) {
-  // 生产环境下使用懒加载方法
+if (!!isProduction) {                              // 生产环境下使用懒加载方法
   Object.keys(obj).forEach((key) => {
     try {
       obj[key] = require('bundle-loader?lazy&name=[name]!containers/' + key + '/' + key);
@@ -25,4 +28,4 @@ if (!!isProduction) {
     }
   });
 }
-export default Object.assign(obj, { App });
+export default Object.assign({}, obj, { BaseComponent, App });

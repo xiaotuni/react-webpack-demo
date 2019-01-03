@@ -1,0 +1,141 @@
+.iconCss {
+  position: relative;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  padding: 10px 10px 10px 10px;
+  &.hidePadding {
+    padding: 0;
+  }
+  >div {
+    background: {
+      position: center;
+      repeat: no-repeat;
+      size: contain;
+    }
+    height: 30px;
+    width: 30px;
+  }
+  .sm {
+    width: 40px;
+    height: 40px;
+  }
+  .md {
+    width: 60px;
+    height: 60px;
+  }
+  .l {
+    width: 80px;
+    height: 80px;
+  }
+  .xl {
+    width: 100px;
+    height: 100px;
+  }
+  .xxl {
+    width: 120px;
+    height: 120px;
+  }
+  ._bankIcon {
+    height: 100%;
+  }
+
+  
+  .iconWarning {
+    height: 30px;
+    width: 30px;
+    background-image: url('./imgs/icon_warning.png');
+  }
+  .iconDelete {
+    height: 30px;
+    width: 30px;
+    background-image: url('./imgs/icon_delete.png');
+  }
+  .iconEdit {
+    height: 30px;
+    width: 30px;
+    background-image: url('./imgs/icon_edit.png');
+  }
+  .iconSelect {
+    height: 45px;
+    width: 45px;
+    background-image: url('./imgs/icon_radio_select.png');
+  }
+  .iconUnSelect {
+    height: 45px;
+    width: 45px;
+    background-image: url('./imgs/icon_radio_unselect.png');
+  }
+
+  .iconClose {
+    width: 36px;
+    height: 36px;
+    background-image: url('./imgs/icon_close.png');
+  }
+  .rightArrow {
+    width: 17px;
+    height: 30px;
+    background-image: url('./imgs/icon_arrow_right.png');
+  }
+  .upArrow {
+    width: 30px;
+    height: 30px;
+    background-image: url('./imgs/icon_arrow_up.png');
+  }
+  .downArrow {
+    width: 30px;
+    height: 30px;
+    background-image: url('./imgs/icon_arrow_down.png');
+  }
+  .iconLock {
+    width: 38px;
+    height: 38px;
+    background-image: url('./imgs/icon_lock.png');
+  }
+  .iconEyeClose {
+    width: 45px;
+    height: 45px;
+    background-image: url('./imgs/icon_eye_close.png');
+  }
+  .iconEyeOpen {
+    width: 45px;
+    height: 45px;
+    background-image: url('./imgs/icon_eye_open.png');
+  }
+  .iconMore {
+    width: 66px;
+    height: 14px; // background-image: url('./imgs/icon_more.png');
+  }
+  .iconGoBack {
+    width: 30px;
+    height: 30px;
+    background-image: url('./imgs/icon_goBack.png');
+  }
+  .rightArrow_sm {
+    width: 17px;
+    height: 20px;
+    background-image: url('./imgs/icon_arrow_right.png');
+  }
+ 
+  
+  /****************************物流***************************/
+  ._logistical {
+    width: 62px;
+    height: 62px;
+  }
+  .iconCheckboxSelect {
+    width: 19px;
+    height: 19px;
+    background-image: url('./imgs/icon-select.png');
+  }
+  .iconCheckboxUnSelect {
+    width: 19px;
+    height: 19px;
+    background-image: url('./imgs/icon-unselect.png');
+  }
+  .iconCheckboxDisable {
+    width: 19px;
+    height: 19px;
+    background-image: url('./imgs/icon-select-disable.png');
+  }
+}

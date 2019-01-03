@@ -1,0 +1,38 @@
+.itemLeftRightCss {
+  position: relative;
+  display: flex;
+  padding: 5px 10px;
+  align-items: center;
+  border-bottom: 1px solid #ececec;
+  .left {
+    min-width: 110px;
+    text-align: right;
+  }
+  .placeHolder {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    .rText,
+    input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ececec;
+      border-radius: 5px;
+      font-size: 0.5rem;
+    }
+    .radio,
+    .checked {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      .item {
+        margin-right: 5px;
+        align-items: center;
+        display: flex;
+        >span {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

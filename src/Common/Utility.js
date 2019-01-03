@@ -87,6 +87,7 @@ export default class Utility {
       Page4: 'page4',                                                  // 首页-->商品列表
       Counter: 'counter',                                                  // 首页-->商品列表
       UserInfo: 'userinfo',                                                  // 首页-->商品列表
+      Rate: 'Rate',                                                  // 首页-->商品列表
       Es6: 'es6',                                                  // 首页-->商品列表
     },
     UrlTitle: {
@@ -97,6 +98,8 @@ export default class Utility {
       '/page4': { Title: 'page4', Index: 0 },
       '/counter': { Title: '计数', Index: 0 },
       '/userinfo': { Title: '用户信息', Index: 0 },
+      '/rate': { Title: '税率', Index: 0 },
+      '/loanTaxRate': { Title: '贷款税率', Index: 0 },
       '/es6': { Title: 'Es6', Index: 0 },
     },
     /**
@@ -157,20 +160,19 @@ export default class Utility {
     const _Browser = {
       versions: () => {
         const uu = navigator.userAgent;
-        // const app = navigator.appVersion;
         return {
           trident: uu.indexOf('Trident') > -1,                                     // IE内核
           presto: uu.indexOf('Presto') > -1,                                       // opera内核
-          webKit: uu.indexOf('AppleWebKit') > -1,                                 // 苹果、谷歌内核
+          webKit: uu.indexOf('AppleWebKit') > -1,                                  // 苹果、谷歌内核
           gecko: uu.indexOf('Gecko') > -1 && uu.indexOf('KHTML') === -1,           // 火狐内核
-          mobile: !!uu.match(/AppleWebKit.*Mobile.*/),                            // 是否为移动终端
+          mobile: !!uu.match(/AppleWebKit.*Mobile.*/),                             // 是否为移动终端
           ios: !!uu.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),                        // ios终端
           android: uu.indexOf('Android') > -1 || uu.indexOf('Adr') > -1,           // android终端
           iPhone: uu.indexOf('iPhone') > -1,                                       // 是否为iPhone或者QQHD浏览器
-          iPad: uu.indexOf('iPad') > -1,                                            // 是否iPad
-          webApp: uu.indexOf('Safari') === -1,                                    // 是否web应该程序，没有头部与底部
-          weixin: uu.indexOf('MicroMessenger') > -1,                             // 是否微信 （2015-01-22新增）
-          qq: uu.match(/\sQQ/i) === ' qq'                                         // 是否QQ
+          iPad: uu.indexOf('iPad') > -1,                                           // 是否iPad
+          webApp: uu.indexOf('Safari') === -1,                                     // 是否web应该程序，没有头部与底部
+          weixin: uu.indexOf('MicroMessenger') > -1,                               // 是否微信 （2015-01-22新增）
+          qq: uu.match(/\sQQ/i) === ' qq'                                          // 是否QQ
         };
       },
       language: (navigator.browserLanguage || navigator.language).toLowerCase()
@@ -278,19 +280,20 @@ export default class Utility {
    */
   static printLog(args) {
     try {
-      let __callmethod = '';
-      try {
-        throw new Error();
-      } catch (ex) {
-        // console.log(e.stack);
-        __callmethod = ex.stack.replace(/Error\n/).split(/\n/)[1].replace(/^\s+|\s+$/, '');
-      }
+      // let __callmethod = '';
+      // try {
+      //   throw new Error();
+      // } catch (ex) {
+      //   // console.log(e.stack);
+      //   __callmethod = ex.stack.replace(/Error\n/).split(/\n/)[1].replace(/^\s+|\s+$/, '');
+      // }
 
       const _curDate = new Date();
       const _aa = _curDate.toLocaleDateString() + ' ' + _curDate.toLocaleTimeString() + '.' + _curDate.getMilliseconds();
-      console.log('--begin->', _aa, ' call method :', __callmethod);
-      const __content = JSON.stringify(args);
-      console.log(__content);
+      // console.log('--begin->', _aa, ' call method :', __callmethod);
+      console.log('--begin->', _aa, ' call method :', ...arguments);
+      // const __content = JSON.stringify(args);
+      // console.log(__content);
     } catch (ex) {
       console.log('---------输出日志，传入的内容传为JSON出现在异常--------------');
       console.log(ex);
