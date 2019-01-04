@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { Switch } from 'react-router-dom';
-import { Utility } from 'components';
+import { Utility } from '../../components';
 const styles = require('./scss/App.scss');
 
 export default class App extends Component {
@@ -28,8 +28,23 @@ export default class App extends Component {
       const self = this;
       const { UrlTitle } = Utility.constItem;
       const __IsGoBackKey = Utility.constItem.KeyGoBack;
+      const keyArray = [];
       this.context.router.history.listen((location, action) => {
-        Utility.setContent(__IsGoBackKey, action === 'POP');
+        const { key } = location;
+        if (key) {
+          if (keyArray.includes(key)) {            // 返回操作
+            keyArray.pop();
+            Utility.setContent(__IsGoBackKey, true);
+          } else {                                 // 前进操作
+            keyArray.push(key);
+            Utility.setContent(__IsGoBackKey, false);
+          }
+        } else {
+          Utility.setContent(__IsGoBackKey, action === 'POP');
+          if (action === 'POP') {
+            keyArray.pop();
+          }
+        }
         const { pathname } = location;
         if (UrlTitle && UrlTitle[pathname]) {
           self.state.UrlTitle = UrlTitle[pathname];
@@ -37,11 +52,14 @@ export default class App extends Component {
         }
       });
     }
-  }
-  componentDidMount() {
-    console.log('app did mount');
+
+    this.context.router.history.block((location, action) => {
+      // console.log('block:', action, location);
+    });
   }
 
+  componentDidMount() {
+  }
 
   getTransitionsName() {
     const __IsGoback = Utility.getContent(Utility.constItem.KeyGoBack);
@@ -62,14 +80,6 @@ export default class App extends Component {
       __tranName.appearActive = styles.spAppearActive;
     }
     return __tranName;
-  }
-
-  getTitle() {
-    const title = Utility.getContent('__URL_TITLE_INFO_');
-    if (title) {
-      return title.Title;
-    }
-    return '默认标题';
   }
 
   render() {

@@ -10,10 +10,10 @@ export default class BaseComponents extends React.Component {
 
   componentWillMount() {
     this.state.isMount = true;
-    Utility.printLog('componentWillMount');
+    // Utility.printLog('componentWillMount');
   }
   componentDidMount() {
-    Utility.printLog('componentDidMount');
+    // Utility.printLog('componentDidMount');
   }
 
   // componentWillReceiveProps(nextProps, nextState) {
@@ -31,11 +31,17 @@ export default class BaseComponents extends React.Component {
   // }
 
   componentWillUnmount() {
-    Utility.printLog('componentWillUnmount');
+    // Utility.printLog('componentWillUnmount');
     delete this.state.isMount;
   }
 
 
+  /**
+   * 更新
+   *
+   * @returns
+   * @memberof BaseComponents
+   */
   UpdateRender() {
     if (!this.state.isMount) {
       return;
@@ -43,6 +49,13 @@ export default class BaseComponents extends React.Component {
     this.setState({ CURRENT_TIME: new Date().getTime() });
   }
 
+  /**
+   * 获取控件的高
+   *
+   * @param {*} ctrl
+   * @returns
+   * @memberof BaseComponents
+   */
   GetCtrlHeight(ctrl) {
     if (!ctrl) {
       return 0;

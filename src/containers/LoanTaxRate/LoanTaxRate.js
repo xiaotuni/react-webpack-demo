@@ -20,7 +20,15 @@ export default class LoanTaxRate extends BaseComponent {
 
   onChange(fieldName, data) {
     this.state[fieldName] = data;
-    this.Method1();
+    const { Method } = this.state;
+    if (Method) {
+      const { Value } = Method || {};
+      if (Value === '1') {
+        this.Method1();
+      } else {
+        this.Method2();
+      }
+    }
     const { divCondition, divHeader, divRows } = this.refs;
     const divConditionHeight = this.GetCtrlHeight(divCondition);
     const divHeaderHight = this.GetCtrlHeight(divHeader);
@@ -56,17 +64,59 @@ export default class LoanTaxRate extends BaseComponent {
       totalMoney += monthMoney;
       TotalInterest += interest;
       item.push({
-        interest, amount, balance: Money - totalMoney, month: (Month - i) + 1
+        interest,
+        amount,
+        balance: Money - totalMoney,
+        month: (Month - i) + 1
       });
     }
     this.state.TotalInterest = TotalInterest;
     this.state.ResultList = item;
   }
 
-  BuildMethod2() {
-    delete this.state.TotalInterest;
-    delete this.state.ResultList;
-    return '';
+  /**
+   * 等额本息
+   *
+   * @memberof LoanTaxRate
+   */
+  Method2() {
+    const { Money, Month, Rate } = this.state;
+    if (!Money || !Month || !Rate) {
+      return;
+    }
+    const _rate = Rate / 100;
+    const monthRate = _rate / 12;
+
+    // 每月还款金额
+    const a = ((1 + monthRate) ** Month) * monthRate;
+    const b = ((1 + monthRate) ** Month) - 1;
+    // 月还款额。
+    const monthMoney = (a / b) * Money;
+
+    const getRow = (month, money) => {
+      // 利息
+      const interest = money * monthRate;
+      const benJing = monthMoney - interest;
+      return { interest, benJing };
+    };
+
+    const item = [];
+    let totalAmount = 0;
+    let TotalInterest = 0;
+    for (let i = Month; i > 0; i -= 1) {
+      const { interest, benJing } = getRow(Month, Money - totalAmount);
+      totalAmount += benJing;
+      TotalInterest += interest;
+      item.push({
+        month: (Month - i) + 1,
+        amount: monthMoney,
+        interest,
+        benJing,
+        balance: Money - totalAmount
+      });
+    }
+    this.state.TotalInterest = TotalInterest;
+    this.state.ResultList = item;
   }
 
   BuildHtml() {
@@ -74,11 +124,8 @@ export default class LoanTaxRate extends BaseComponent {
     if (!Method) {
       return null;
     }
-    const { Value } = Method || {};
-    if (Value === '1') {
-      return this.BuildMethod1();
-    }
-    return this.BuildMethod2();
+
+    return this.BuildMethod1();
   }
 
   BuildMethod1() {

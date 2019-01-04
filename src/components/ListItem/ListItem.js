@@ -14,45 +14,6 @@ export default class ListItem extends Component {
     super(props);
     this.state = {};
   }
-  componentWillMount() {
-    console.log('-listitem-1----will mount------');
-  }
-  componentDidMount() {
-    console.log('-listitem-2----did mount------');
-  }
-  componentWillReceiveProps(nextProps, nextState) {
-    const { a } = nextState;
-    if (a) {
-      console.log(a);
-    }
-    console.log('-listitem-3----will receive props------------');
-  }
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    const { a } = nextContext;
-    if (a) {
-      console.log(a);
-    }
-
-    console.log('-listitem-4----should update-----------------');
-    return true;
-  }
-  componentWillUpdate(nextProps, nextState, nextContext) {
-    const { a } = nextContext;
-    if (a) {
-      console.log(a);
-    }
-    console.log('-listitem-5----will update-------------');
-  }
-  componentDidUpdate(prevProps, prevState) {
-    const { a } = prevState;
-    if (a) {
-      console.log(a);
-    }
-    console.log('-listitem-6----did update-----------');
-  }
-  componentWillUnmount() {
-    console.log('-listitem-7----will unmount-----------');
-  }
 
   onClickSelectItem(item, index) {
     console.log(item);
@@ -63,7 +24,6 @@ export default class ListItem extends Component {
   }
 
   componentDidCatch() {
-    console.log('-listitem-----------did catch-------------');
   }
 
   BuildHtml() {

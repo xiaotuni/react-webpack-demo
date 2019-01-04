@@ -18,11 +18,9 @@ const CreateComponent = (component) => (args) => (
   </Bundle>
 );
 
-console.log(pageComponent);
-
 const getRouters = () => (
   <Router basename={AppCfg.app.BaseName}>
-    <App>
+    <App >
       <Route exact path="/" component={CreateComponent(Default)} />
       {
         Object.keys(pageComponent).map((key, index) => {
@@ -37,13 +35,3 @@ const getRouters = () => (
 );
 
 export default getRouters;
-
-// <Route path="/default" component={Default} />
-// <Route path="/home" component={Home} />
-// <Route path="/page1" component={page1} />
-// <Route path="/page2" component={page2} />
-// <Route path="/page3" component={page3} />
-// <Route path="/page4" component={page4} />
-// <Route path="/counter" component={Counter} />
-// <Route path="/userinfo" component={UserInfo} />
-// <Route path="/es6" component={Es6} />

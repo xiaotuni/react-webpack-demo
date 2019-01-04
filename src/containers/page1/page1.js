@@ -25,43 +25,11 @@ export default class Page1 extends Component {
   }
 
   onCallApi() {
-    const { onApiGet } = this.props;
-    if (!onApiGet) {
-      return;
-    }
-    // onApiGet('UserList', ApiInfo.Users, {}).then((data) => {
-    //   console.log(data);
-    // }).catch((er) => {
-    //   console.log(er);
-    // });
 
-    function* testa() {
-      console.log('---------1----------');
-      yield onApiGet('UserList', ApiInfo.Users, {});
-      console.log('---------2----------');
-      yield onApiGet('MapPlacelist', ApiInfo.MapPlacelist, {});
-      console.log('---------3----------');
-      yield onApiGet('Demo', ApiInfo.Demo, {});
-      console.log('---------4----------');
-      yield 'ok';
-    }
-    const gen = testa();
-
-    let result = gen.next();
-    console.log(result);
-    result = gen.next();
-    console.log(result);
-    result = gen.next();
-    console.log(result);
-    result = gen.next();
-    console.log(result);
-    result = gen.next();
-    console.log(result);
   }
 
 
   render() {
-    console.log('-----------------', new Date().getTime());
     const { UserList } = this.props;
     return (
       <div className={comStyles.navbar + ' ' + styles.page1Css}>
