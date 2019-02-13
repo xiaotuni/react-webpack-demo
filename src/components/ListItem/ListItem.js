@@ -15,15 +15,15 @@ export default class ListItem extends Component {
     this.state = {};
   }
 
+  componentDidCatch() {
+  }
+
   onClickSelectItem(item, index) {
     console.log(item);
     const { onDelete } = this.props;
     if (onDelete) {
       onDelete(item, index);
     }
-  }
-
-  componentDidCatch() {
   }
 
   BuildHtml() {

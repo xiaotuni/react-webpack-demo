@@ -13,14 +13,14 @@ export default class Page4 extends Component {
   }
   componentDidMount() {
   }
+  componentDidCatch() {
+  }
 
   onListItemDelete(item, index) {
     this.state.DataSource.splice(index, 1);
     this.setState({ CurrentDate: new Date() });
   }
 
-  componentDidCatch() {
-  }
 
   btnUpdateDate() {
     // new Date().toLocaleTimeString();
