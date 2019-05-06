@@ -11,9 +11,9 @@ export default class Page4 extends Component {
 
   componentWillMount() {
   }
+
+
   componentDidMount() {
-  }
-  componentDidCatch() {
   }
 
   onListItemDelete(item, index) {
@@ -21,6 +21,9 @@ export default class Page4 extends Component {
     this.setState({ CurrentDate: new Date() });
   }
 
+  componentDidCatch() {
+    
+  }
 
   btnUpdateDate() {
     // new Date().toLocaleTimeString();
